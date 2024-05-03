@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package hive.ota;
+option java_package = "co.applied.hive.ota";
+
+message VehicleCampaignStatus {
+  enum Status {
+    UNKNOWN = 0;
+    AWAITING_DOWNLOAD_CONSENT = 4;
+    DOWNLOAD_AVAILABLE = 5;
+    DOWNLOAD_IN_PROGRESS = 6;
+    INSTALL_AVAILABLE = 7;
+    INSTALL_SCHEDULED = 8;
+    INSTALL_IN_PROGRESS = 9;
+    INSTALL_COMPLETE = 14;
+    FAILED = 10;  // Failed without rollback
+    ROLLED_BACK = 11;
+    SUCCEEDED = 12;
+    SKIPPED = 13;
+  }
+}

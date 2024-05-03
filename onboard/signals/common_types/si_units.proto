@@ -1,0 +1,72 @@
+syntax = "proto2";
+
+package moz.msg;
+option java_package = "co.applied.protos";
+option java_outer_classname = "SiUnitsProtos";
+
+/// This file defines some low-level SI units to be used in other signals.
+/// Messages should be titled with the unit they represent (ex. "Meter"), and
+/// contain a single member with the plural form of the unit (ex. "meters").
+/// The intent is to make the units *extremely* clear wherever signal fields are accessed,
+/// and to avoid the need for all fields to have a `_unit` suffix.
+
+/// See //onboard/mosaic/lib/units:nanopb_unit_builders for utilities for converting these
+/// proto message types to/from au C++ unit types.
+
+message DegreesCelsius {
+  required float degrees_celsius = 1;
+}
+
+message AngleDegree {
+  required float angle_degrees = 1;
+}
+
+message Pascal {
+  required float pascals = 1;
+}
+
+message Meter {
+  required float meters = 1;
+}
+
+// This is a 64-bit version of Meter, for use in signals that need to represent
+// very large distances (UTM coordinates).
+message Meter64 {
+  required double meters = 1;
+}
+
+message MeterPerSecond {
+  required float meters_per_second = 1;
+}
+
+message Hertz {
+  required float hertz = 1;
+}
+
+message Watt {
+  required float watts = 1;
+}
+
+message Newton {
+  required float newtons = 1;
+}
+
+message NewtonMeter {
+  required float newton_meters = 1;
+}
+
+message Percent {
+  required float percent = 1;
+}
+
+message Seconds {
+  required int32 seconds = 1;
+}
+
+message RevolutionsPerMinute {
+  required float rpm = 1;
+}
+
+message KilometerPerHour {
+  required float kilometers_per_hour = 1;
+}

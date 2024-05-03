@@ -1,0 +1,10 @@
+syntax = "proto2";
+
+package moz.msg;
+
+// Using this message to ping the generic data logger when a Logging Rule Update is available.
+message LoggingRuleUpdate {
+  // adding a dummy bool so RTI DDS will actually send the message and not ignore it since it's
+  // empty.
+  required bool dummy = 1;
+}

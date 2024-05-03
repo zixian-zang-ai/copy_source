@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+import "onboard/signals/autonomy/visualization/status.proto";
+import "onboard/signals/autonomy/visualization/pose3d.proto";
+
+// This message defines the localization message.
+message Localization {
+  // The autonomy module sending the localization message
+  required string autonomy_module = 1 [(nanopb).max_length = 50];
+  // Status expresses the availablility/reliability of the stream.
+  required Status status = 2;
+  // Ego localization is expressed in 3D.
+  required Pose3D ego_pose = 3;
+}

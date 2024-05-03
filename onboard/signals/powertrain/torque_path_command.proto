@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "onboard/signals/common_types/si_units.proto";
+
+message TorquePathCommand {
+  // motor torque command by "one-pedal-driving", consumed by brake system for blending strategy.
+  required NewtonMeter motor_torque_acc_pedal_command = 1;
+
+  // final motor torque command to command the electric motor.
+  required NewtonMeter motor_torque_command = 2;
+}

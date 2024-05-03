@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+package moz.msg;
+option java_package = "co.applied.protos";
+option java_outer_classname = "VehicleConfigProtos";
+
+import "nanopb.proto";
+
+message AndroidVehicleConfigRequest {
+  required string zone_name = 1 [(nanopb).max_length = 20];
+};
+
+message AndroidVehicleConfigResponse {
+  required string vehicle_uuid = 1 [(nanopb).max_length = 40];
+};

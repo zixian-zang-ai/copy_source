@@ -1,0 +1,35 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+import "onboard/signals/common_types/si_units.proto";
+import "onboard/signals/common_types/vehicle_timestamp.proto";
+
+// This message defines the status of the vizualization streams and is sent at a frequency of 1Hz
+message StreamsStatus {
+  // The autonomy module sending the streams
+  required string autonomy_module = 1 [(nanopb).max_length = 50];
+  // the timestamp in us
+  required VehicleTimestamp timestamp = 2;
+  //
+  repeated StreamDefinition streams = 3 [(nanopb).max_count = 50];
+}
+
+// Possible stream types
+enum VisualizationStreamType {
+  VISUALIZATION_STREAM_TYPE_LOCALIZATION = 0;
+  VISUALIZATION_STREAM_TYPE_DETECTED_OBJECTS = 1;
+  VISUALIZATION_STREAM_TYPE_PLANNER = 2;
+}
+
+message StreamDefinition {
+  // The name of the stream
+  required string name = 1 [(nanopb).max_length = 50];
+  // The type of stream
+  required VisualizationStreamType type = 2;
+  // The frequency of the stream in Hz
+  required Hertz frequency_hz = 3;
+  // Flag indicating if the stream is enabled
+  required bool enabled = 4;
+}

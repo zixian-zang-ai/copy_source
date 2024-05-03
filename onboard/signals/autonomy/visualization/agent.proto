@@ -1,0 +1,46 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "onboard/signals/autonomy/visualization/pose3d.proto";
+import "onboard/signals/autonomy/visualization/size3d.proto";
+
+// Agent Types
+enum AgentType {
+  // Unknown type is always zero.
+  AGENT_TYPE_UNKNOWN = 0;
+
+  // Vehicle types. Always starts with 1.
+  AGENT_TYPE_SEDAN = 11;
+  AGENT_TYPE_TRUCK = 12;
+  AGENT_TYPE_MOTORCYCLE = 13;
+
+  // Vulnerable road user (VRU) types. Always starts with 2.
+  AGENT_TYPE_PEDESTRIAN = 21;
+  AGENT_TYPE_CYCLIST = 22;
+}
+
+enum AgentHighlightColor {
+  AGENT_HIGHLIGHT_COLOR_NONE = 0;
+  AGENT_HIGHLIGHT_COLOR_RED = 1;
+  AGENT_HIGHLIGHT_COLOR_ORANGE = 2;
+  AGENT_HIGHLIGHT_COLOR_YELLOW = 3;
+  AGENT_HIGHLIGHT_COLOR_GREEN = 4;
+  AGENT_HIGHLIGHT_COLOR_BLUE = 5;
+  AGENT_HIGHLIGHT_COLOR_PURPLE = 6;
+}
+
+// This message defines an agent object.
+message Agent {
+  // Agent has a unique ID.
+  required uint32 id = 1;
+  // Agent has a certain type.
+  required AgentType type = 2;
+  // Agent's bounding box size
+  required Pose3D pose = 3;
+  // Agent's bounding box size
+  required Size3D size = 4;  // meters
+  required bool highlight = 5 [default = false];
+  // Color agent needs to be highlighted with.
+  required AgentHighlightColor highlight_color = 6 [default = AGENT_HIGHLIGHT_COLOR_NONE];
+}

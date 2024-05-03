@@ -1,0 +1,21 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+
+message TargetVersionInfo {
+  // Git version that the code was compiled on (as determined by git describe --always)
+  required string git_version = 2 [(nanopb).max_length = 100];
+  // SHA256 hash (64 chars) of the content of a given binary
+  required string content_sha = 3 [(nanopb).max_length = 65];
+  // name of the onboard target
+  required string target_name = 4 [(nanopb).max_length = 100];
+
+  reserved 1;
+}
+
+message BoardTargetVersionsResponse {
+  required string board_name = 1 [(nanopb).max_length = 40];
+  repeated TargetVersionInfo target_version_infos = 2 [(nanopb).max_count = 100];
+};

@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+package moz.msg;
+
+// Possible open or close state for doors.
+enum OpenCloseState {
+  OPEN_CLOSE_STATE_UNKNOWN = 0;       // Unknown (to initialize)
+  OPEN_CLOSE_STATE_OPEN = 1;          // Open
+  OPEN_CLOSE_STATE_CLOSED = 2;        // Closed
+  OPEN_CLOSE_STATE_NON_EXISTENT = 3;  // The door hardware does not exist
+}
+
+message DoorOpenCloseState {
+  required OpenCloseState open_close_state = 1;
+};

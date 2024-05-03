@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+
+message UnrealEngineHeartbeatStats {
+  // Stores the timestamp when the last heartbeat message was received from UE
+  required string recv_timestamp = 1 [(nanopb).max_size = 35];
+
+  // Stores the timestamp when the visualization thread first started
+  required string started_timestamp = 2 [(nanopb).max_size = 35];
+
+  // Stores the OS type of the Unreal instance sending this heartbeat
+  required string os_type = 3 [(nanopb).max_size = 10];
+}

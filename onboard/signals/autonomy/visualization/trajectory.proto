@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+import "onboard/signals/autonomy/visualization/waypoint.proto";
+
+// This message defines a trajectory representation.
+message Trajectory {
+  // A trajectory is made up of a sequence of waypoints
+  repeated Waypoint waypoints = 1 [(nanopb).max_count = 10];
+}

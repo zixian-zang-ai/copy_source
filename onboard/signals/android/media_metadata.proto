@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+
+message MediaMetadata {
+  required string title = 1 [(nanopb).max_length = 20];
+  required string subtitle = 2 [(nanopb).max_length = 20];
+  required bytes media_art = 3 [(nanopb).max_size = 40000];
+};

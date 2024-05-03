@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+package moz.msg;
+
+enum TouchType {
+  TOUCH_TYPE_UP = 0;
+  TOUCH_TYPE_DOWN = 1;
+  TOUCH_TYPE_MOVE = 2;
+}
+
+message TouchEvent {
+  required uint64 seq_num = 1;
+  required uint32 display_id = 2;
+  required TouchType type = 3;
+  required float x = 4;
+  required float y = 5;
+};

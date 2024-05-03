@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+package moz.msg;
+
+enum SentryModeStateEnum {
+  SENTRY_MODE_STATE_ENUM_OFF = 0;
+  SENTRY_MODE_STATE_ENUM_STANDBY = 1;  // Sentry mode enabled from HMI but in standby
+  SENTRY_MODE_STATE_ENUM_ALERT = 2;    // Not used yet
+  SENTRY_MODE_STATE_ENUM_ALARM = 3;    // Sentry mode activated due to door open
+}
+
+message SentryModeState {
+  required SentryModeStateEnum sentry_mode_state = 1;
+}

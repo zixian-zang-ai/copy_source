@@ -1,0 +1,20 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+import "onboard/signals/camera/camera_timestamp.proto";
+
+enum Format {
+  FORMAT_UNSET = 0;
+  FORMAT_JPG = 1;
+  FORMAT_PNG = 2;
+}
+
+message CameraFormat {
+  required Format format = 1;
+
+  // Timestamps for the assocaited frame
+  repeated CameraTimestamp timestamps = 2 [(nanopb).max_count = 10];
+  required string camera_name = 3 [(nanopb).max_length = 30];
+}

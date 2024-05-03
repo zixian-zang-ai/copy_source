@@ -1,0 +1,10 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+
+message OtaProgressRequest {
+  // Campaign UUID to request progress for.
+  required string campaign_uuid = 1 [(nanopb).max_length = 37];
+};

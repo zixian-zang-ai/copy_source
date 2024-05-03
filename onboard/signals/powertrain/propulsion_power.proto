@@ -1,0 +1,9 @@
+syntax = "proto2";
+
+package moz.msg;
+
+message PropulsionPower {
+  /// propulsion power as calculated, positive for traction, negative
+  /// for regen. Unit is in kW, naming reflecting the unit
+  required float power_val_kw = 1;
+}

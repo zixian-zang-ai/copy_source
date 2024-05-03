@@ -1,0 +1,20 @@
+syntax = "proto2";
+
+package moz.msg;
+option java_package = "co.applied.protos";
+option java_outer_classname = "DriveModeProtos";
+
+enum DriveModeState {
+  DRIVE_MODE_STATE_NORMAL = 0;
+  DRIVE_MODE_STATE_SPORT = 1;
+  DRIVE_MODE_STATE_RACETRACK = 2;
+  DRIVE_MODE_STATE_ECO = 3;
+}
+
+message DriveMode {
+  required DriveModeState drive_mode = 1 [default = DRIVE_MODE_STATE_NORMAL];
+};
+
+message DriveModeRequest {
+  required bool get_current_drive_mode = 1;
+};

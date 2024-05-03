@@ -1,0 +1,56 @@
+syntax = "proto2";
+
+package moz.msg;
+option java_package = "co.applied.protos";
+option java_outer_classname = "SteeringButtonStateProtos";
+
+// The SteeringButtonID describes the complete set of physical
+// buttons located on the steering wheel. The enum names are
+// derived from the icons present on each of the buttons. It is
+// up to the individual applications (e.g. on qt or android) to
+// specify the functionality of pressing each button.
+enum SteeringButtonID {
+  STEERING_BUTTON_ID_VOICE = 0;
+  STEERING_BUTTON_ID_BACK = 1;
+  STEERING_BUTTON_ID_END_CALL = 2;
+  STEERING_BUTTON_ID_START_CALL = 3;
+  STEERING_BUTTON_ID_SETTINGS = 4;
+  STEERING_BUTTON_ID_ADAS = 5;
+  STEERING_BUTTON_ID_RECUPERATION = 6;
+  STEERING_BUTTON_ID_USER_CUSTOM = 7;
+  STEERING_BUTTON_ID_NEXT = 8;
+  STEERING_BUTTON_ID_PREV = 9;
+  STEERING_BUTTON_ID_SCROLL_CLOCKWISE = 10;
+  STEERING_BUTTON_ID_SCROLL_COUNTERCLOCKWISE = 11;
+  STEERING_BUTTON_ID_LHS_UP = 12;
+  STEERING_BUTTON_ID_LHS_DOWN = 13;
+  STEERING_BUTTON_ID_LHS_LEFT = 14;
+  STEERING_BUTTON_ID_LHS_RIGHT = 15;
+  STEERING_BUTTON_ID_LHS_DEPRESS = 16;
+  STEERING_BUTTON_ID_RHS_UP = 17;
+  STEERING_BUTTON_ID_RHS_DOWN = 18;
+  STEERING_BUTTON_ID_RHS_LEFT = 19;
+  STEERING_BUTTON_ID_RHS_RIGHT = 20;
+  STEERING_BUTTON_ID_RHS_DEPRESS = 21;
+  STEERING_BUTTON_ID_LHS_CENTER = 22;
+  STEERING_BUTTON_ID_RHS_CENTER = 23;
+  STEERING_BUTTON_ID_HOOK = 24;
+  STEERING_BUTTON_ID_TUBE_TOGGLE = 25;
+  STEERING_BUTTON_ID_JOKER = 26;
+  STEERING_BUTTON_ID_MUTE = 27;
+  STEERING_BUTTON_ID_MAIN_MENU = 28;
+  STEERING_BUTTON_ID_ACC_INC = 29;  // Adaptive cruise control
+  STEERING_BUTTON_ID_ACC_DEC = 30;
+  STEERING_BUTTON_ID_ACC_ON_OFF = 31;
+  STEERING_BUTTON_ID_ACC_RES_CANCEL = 32;
+  STEERING_BUTTON_ID_ACC_GAP_DEC = 33;
+  STEERING_BUTTON_ID_LKA_ON_OFF = 34;  // Lane keep assist
+  STEERING_BUTTON_ID_LD_OK = 35;       // Left D-pad
+  STEERING_BUTTON_ID_VOLUME_UP = 36;
+  STEERING_BUTTON_ID_VOLUME_DOWN = 37;
+};
+
+message SteeringButtonState {
+  required SteeringButtonID id = 1;
+  required bool button_pressed = 2;
+};

@@ -1,0 +1,10 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+
+message RacetrackLoggerResponse {
+  required bool recording_state = 1;
+  optional string error_message = 2 [(nanopb).max_length = 40];
+}

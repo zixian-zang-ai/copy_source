@@ -1,0 +1,41 @@
+syntax = "proto2";
+
+package moz.msg;
+option java_package = "co.applied.protos";
+option java_outer_classname = "vehicleSettingsUiProtos";
+
+enum SteerFeelMode {
+  STEER_FEEL_MODE_COMFORT = 0;
+  STEER_FEEL_MODE_STANDARD = 1;
+  STEER_FEEL_MODE_SPORT = 2;
+}
+
+enum AccPedalMode {
+  ACC_PEDAL_MODE_COMFORT = 0;
+  ACC_PEDAL_MODE_STANDARD = 1;
+  ACC_PEDAL_MODE_SPORT = 2;
+}
+
+// request to set the current Steering Feel Mode
+message SetSteerFeelModeRequest {
+  // the steering feel mode to set
+  required SteerFeelMode steer_feel_mode_req = 1;
+};
+
+// current Steering Feel Mode status
+message SteerFeelModeState {
+  // the current steering feel mode as a status
+  required SteerFeelMode steer_feel_mode_stat = 1;
+};
+
+// request to set the current AccPedalMode
+message SetAccPedalModeRequest {
+  // the AccPedal mode to set
+  required AccPedalMode acc_pedal_mode_req = 1;
+};
+
+// current AccPedalMode status
+message AccPedalModeState {
+  // the current acc pedal mode as a status
+  required AccPedalMode acc_pedal_mode_stat = 1;
+};

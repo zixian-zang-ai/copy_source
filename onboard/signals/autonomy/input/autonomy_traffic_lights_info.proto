@@ -1,0 +1,32 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+import "onboard/signals/common_types/si_units.proto";
+
+// Traffic light states provided by an external interface
+enum ExtTrafficLightStateEnum {
+  EXT_TRAFFIC_LIGHT_STATE_ENUM_INVALID = 0;
+  EXT_TRAFFIC_LIGHT_STATE_ENUM_UNKNOWN = 1;
+  EXT_TRAFFIC_LIGHT_STATE_ENUM_GO = 2;
+  EXT_TRAFFIC_LIGHT_STATE_ENUM_STOP = 3;
+  EXT_TRAFFIC_LIGHT_STATE_ENUM_PREPARE_TO_GO = 4;
+  EXT_TRAFFIC_LIGHT_STATE_ENUM_PREPARE_TO_STOP = 5;
+}
+
+// This message defines the interface for messages sent from Traffic Light tools on mosaic to an
+// autonomy stack.
+message AutonomyTrafficLight {
+  // Traffic Light has a unique ID.
+  required uint32 id = 1;
+  // Traffic Light state
+  required ExtTrafficLightStateEnum ext_traffic_light_state = 2
+      [default = EXT_TRAFFIC_LIGHT_STATE_ENUM_UNKNOWN];
+  // Traffic Light distance from stop line
+  required Meter meters_from_stop_line = 3;
+}
+
+message AutonomyTrafficLightsInfo {
+  repeated AutonomyTrafficLight traffic_lights = 1 [(nanopb).max_count = 7];
+}

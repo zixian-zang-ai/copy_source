@@ -1,0 +1,24 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "onboard/signals/common_types/vehicle_timestamp.proto";
+
+enum CameraTimestampLocation {
+  CAMERA_TIMESTAMP_LOCATION_CAPTURE = 0;
+  CAMERA_TIMESTAMP_LOCATION_PRE_COMPRESSION = 1;
+  CAMERA_TIMESTAMP_LOCATION_POST_COMPRESSION = 2;
+  CAMERA_TIMESTAMP_LOCATION_IMAGE_STREAMER_SEND = 3;
+  CAMERA_TIMESTAMP_LOCATION_STREAM_CONTROLLER_RECEIVE = 4;
+  CAMERA_TIMESTAMP_LOCATION_SHMEM_PUT = 5;
+  CAMERA_TIMESTAMP_LOCATION_SHMEM_GET = 6;
+  CAMERA_TIMESTAMP_LOCATION_RENDER = 7;
+}
+
+message CameraTimestamp {
+  // where the timestamp was captured
+  required CameraTimestampLocation location = 1;
+
+  // timestamp
+  required VehicleTimestamp timestamp = 2;
+}

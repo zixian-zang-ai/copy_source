@@ -1,0 +1,7 @@
+syntax = "proto2";
+
+package moz.msg;
+
+message GetUserVehicleSettingsReq {
+  required bool get_user_vehicle_settings = 1;
+}

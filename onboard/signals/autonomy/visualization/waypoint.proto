@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "onboard/signals/autonomy/visualization/pose3d.proto";
+import "onboard/signals/common_types/si_units.proto";
+
+// This message defines a waypoint representation.
+message Waypoint {
+  // 3D pose at the waypoint
+  required Pose3D pose = 1;
+  // Speed at the waypoint
+  required MeterPerSecond speed = 2;  // meter per sec
+}

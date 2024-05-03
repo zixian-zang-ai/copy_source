@@ -1,0 +1,18 @@
+
+
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+
+enum ServiceCommand {
+  SERVICE_COMMAND_STOP = 0;
+  SERVICE_COMMAND_START = 1;
+};
+
+message ServiceStateChangeCommand {
+  required ServiceCommand command = 1;
+  required string board_name = 2 [(nanopb).max_length = 80];
+  repeated string commanded_services = 3 [(nanopb).max_count = 40, (nanopb).max_length = 80];
+};

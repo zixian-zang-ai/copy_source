@@ -1,0 +1,60 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+
+message PidSystemMetric {
+  required uint64 pid = 1;
+  required string process_name = 2 [(nanopb).max_length = 63];
+  required float system_metric = 3;
+  required string mpk_name = 4 [(nanopb).max_length = 40];  // will be empty string if not an mpk
+};
+
+message DirectoryDiskUsage {
+  required string directory = 1 [(nanopb).max_length = 120];
+  required float used_disk_mb = 2;  // The disk usage this directory is taking up
+};
+
+message ApkSystemMetric {
+  required float system_metric = 1;
+  required string apk_name = 2 [(nanopb).max_length = 100];
+};
+
+message CpuUsage {
+  required string board_name = 1 [(nanopb).max_length = 63];
+  repeated PidSystemMetric pid_cpu_percentages = 2 [(nanopb).max_count = 63];
+  required float total_cpu_load_percent = 3;
+  required uint64 cpu_collection_epoch_secs = 4;
+};
+
+message DiskUsage {
+  required string board_name = 1 [(nanopb).max_length = 63];
+  required uint64 free_disk_mb = 2;
+  required uint64 used_disk_mb = 3;
+  repeated DirectoryDiskUsage directory_disk_usages = 4 [(nanopb).max_count = 63];
+};
+
+message MemoryUsage {
+  required string board_name = 1 [(nanopb).max_length = 63];
+  repeated PidSystemMetric pid_mem_mb = 2 [(nanopb).max_count = 63];
+  required float total_mem_mb = 3;
+  required float available_mem_mb = 4;
+  required uint64 mem_collection_epoch_secs = 5;
+};
+
+message ApkCpuUsage {
+  repeated ApkSystemMetric apk_cpu_percentage = 1
+      [(nanopb).max_count =
+           63];  // same size limit used in
+                 // //tools/health_monitor/android_health_monitoring/android_monitor_config.py
+                 // to truncate oversized metric list
+}
+
+message ApkMemoryUsage {
+  repeated ApkSystemMetric apk_mem_mb = 1
+      [(nanopb).max_count =
+           63];  // same size limit used in
+                 // //tools/health_monitor/android_health_monitoring/android_monitor_config.py
+                 // to truncate oversized metric list
+}

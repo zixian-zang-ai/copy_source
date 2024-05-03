@@ -1,0 +1,22 @@
+syntax = "proto2";
+package moz.msg;
+
+import "onboard/signals/common_types/transition_status.proto";
+
+enum VehicleStateMode {
+  VEHICLE_STATE_MODE_DEEP_SLEEP = 0;
+  VEHICLE_STATE_MODE_SLEEP = 1;
+  VEHICLE_STATE_MODE_ACCESSORY_READY = 2;
+  VEHICLE_STATE_MODE_ACCESSORY = 3;
+  VEHICLE_STATE_MODE_DRIVE_READY = 4;
+  VEHICLE_STATE_MODE_DRIVE = 5;
+  VEHICLE_STATE_MODE_SLEEP_ACTIVE_OTA = 6;
+  VEHICLE_STATE_MODE_SLEEP_ACTIVE_SENTRY = 7;
+  VEHICLE_STATE_MODE_SLEEP_ACTIVE_REMOTE = 8;
+}
+
+message VehicleState {
+  required VehicleStateMode vehicle_state = 1 [default = VEHICLE_STATE_MODE_SLEEP];
+  required TransitionStatus vehicle_transition_status = 2
+      [default = TRANSITION_STATUS_NOT_TRANSITIONING];
+}

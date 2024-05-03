@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "onboard/signals/autonomy/visualization/vector3d.proto";
+import "onboard/signals/autonomy/visualization/quaternion.proto";
+
+// This message defines the 3D pose representation
+message Pose3D {
+  required Vector3D translation = 1;  // meters
+  required Quaternion rotation = 2;   // unitless
+}

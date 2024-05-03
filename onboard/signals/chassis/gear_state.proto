@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+package moz.msg;
+
+enum GearStateEnum {
+  GEAR_STATE_ENUM_PARK = 0;
+  GEAR_STATE_ENUM_REVERSE = 1;
+  GEAR_STATE_ENUM_NEUTRAL = 2;
+  GEAR_STATE_ENUM_DRIVE = 3;
+}
+
+message GearState {
+  required GearStateEnum gear_state = 1 [default = GEAR_STATE_ENUM_PARK];
+}

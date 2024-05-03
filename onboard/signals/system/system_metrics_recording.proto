@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+import "nanopb.proto";
+
+package moz.msg;
+
+message SystemMetricsRecordingRequest {
+  // Request to either enable/disable system metric data logging.
+  required bool enable_system_metric_logging = 1;
+
+  // If enable_system_metric_logging is false, scenario_name is ignored.
+  optional string scenario_name = 2 [(nanopb).max_length = 56];
+};
+
+message SystemMetricsRecordingResponse {
+  required bool success = 1;
+};

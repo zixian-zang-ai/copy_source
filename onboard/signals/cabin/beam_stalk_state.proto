@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+package moz.msg;
+
+/// Possible states of the beam stalk.
+enum BeamStalkStateEnum {
+  BEAM_STALK_STATE_ENUM_HIGH_BEAM_NONE = 0;  /// The beam stalk is not pulled or pushed.
+  BEAM_STALK_STATE_ENUM_HIGH_BEAM_PULL = 1;  /// The beam stalk is pulled.
+  BEAM_STALK_STATE_ENUM_HIGH_BEAM_PUSH = 2;  /// The beam stalk is pushed.
+}
+
+message BeamStalkState {
+  required BeamStalkStateEnum beam_stalk_state = 1;
+};

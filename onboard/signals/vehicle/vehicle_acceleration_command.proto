@@ -1,0 +1,7 @@
+syntax = "proto2";
+
+package moz.msg;
+
+message VehicleAccelerationCommand {
+  required float acceleration = 1;  // Accel pedal pressed percentage beween 0 and 1
+};

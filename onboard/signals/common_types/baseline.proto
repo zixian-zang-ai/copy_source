@@ -1,0 +1,50 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+
+message Baseline1 {
+  required bytes data = 1 [(nanopb).max_size = 1, (nanopb).fixed_length = true];
+}
+message Baseline2 {
+  required bytes data = 1 [(nanopb).max_size = 2, (nanopb).fixed_length = true];
+}
+message Baseline4 {
+  required bytes data = 1 [(nanopb).max_size = 4, (nanopb).fixed_length = true];
+}
+message Baseline8 {
+  required bytes data = 1 [(nanopb).max_size = 8, (nanopb).fixed_length = true];
+}
+message Baseline16 {
+  required bytes data = 1 [(nanopb).max_size = 16, (nanopb).fixed_length = true];
+}
+message Baseline32 {
+  required bytes data = 1 [(nanopb).max_size = 32, (nanopb).fixed_length = true];
+}
+message Baseline64 {
+  required bytes data = 1 [(nanopb).max_size = 64, (nanopb).fixed_length = true];
+}
+message Baseline128 {
+  required bytes data = 1 [(nanopb).max_size = 128, (nanopb).fixed_length = true];
+}
+message Baseline256 {
+  required bytes data = 1 [(nanopb).max_size = 256, (nanopb).fixed_length = true];
+}
+message Baseline512 {
+  required bytes data = 1 [(nanopb).max_size = 512, (nanopb).fixed_length = true];
+}
+message Baseline1K {
+  required bytes data = 1 [(nanopb).max_size = 1024, (nanopb).fixed_length = true];
+}
+message Baseline2K {
+  required bytes data = 1 [(nanopb).max_size = 2048, (nanopb).fixed_length = true];
+}
+message Baseline4K {
+  required bytes data = 1 [(nanopb).max_size = 4096, (nanopb).fixed_length = true];
+}
+
+// Change this to change the message being tested
+message BaselineMessageWrapper {
+  required Baseline1 payload = 1;
+}

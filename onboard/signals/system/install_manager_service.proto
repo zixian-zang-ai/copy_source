@@ -1,0 +1,66 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+import "onboard/signals/system/system_manifest.proto";
+
+// Inform the install_manager of a new system manifest.
+message CreateManifest {
+  required SystemManifest system_manifest = 1;
+}
+
+// Inform the install_manager that all artifacts are downloaded.
+message CompleteManifest {
+  required string manifest_id = 1 [(nanopb).max_length = 37];
+}
+
+// Request that the install_manager apply a manifest.
+message ApplyManifest {
+  required string manifest_id = 1 [(nanopb).max_length = 37];
+}
+
+// Reap the state of a completed or failed manifest.
+message ReapManifest {
+  required string manifest_id = 1 [(nanopb).max_length = 37];
+}
+
+// The state of install of a specific system manifest.
+enum ManifestInstallState {
+  MANIFEST_INSTALL_STATE_UNSPECIFIED = 0;
+  MANIFEST_INSTALL_STATE_PREPARING = 1;
+  MANIFEST_INSTALL_STATE_DOWNLOADED = 2;
+  MANIFEST_INSTALL_STATE_INSTALLABLE = 3;
+  MANIFEST_INSTALL_STATE_INSTALLING = 4;
+  MANIFEST_INSTALL_STATE_INSTALLED = 5;
+  MANIFEST_INSTALL_STATE_ROLLING_BACK = 6;
+  MANIFEST_INSTALL_STATE_FAILED = 7;
+}
+
+// The current state of the install_manager.
+enum InstallManagerState {
+  INSTALL_MANAGER_STATE_UNSPECIFIED = 0;
+  // Default state. Ready to install.
+  INSTALL_MANAGER_STATE_IDLE = 1;
+  // There is an installation or rollback in progress.
+  INSTALL_MANAGER_STATE_BUSY = 2;
+  // Nothing is in progress, but something is partially done.
+  INSTALL_MANAGER_STATE_BLOCKED = 3;
+}
+
+message Artifact {
+  required string id = 1 [(nanopb).max_length = 17];
+}
+
+message ManifestStateInfo {
+  required string manifest_id = 1 [(nanopb).max_length = 37];
+  required bool install_attempts = 2;
+  required ManifestInstallState install_state = 3;
+  repeated Artifact pending_artifacts = 4 [(nanopb).max_count = 100];
+}
+
+// Publish the state of all manifests currently tracked by the install_manager.
+message InstallManagerStateInfo {
+  required InstallManagerState state = 1;
+  repeated ManifestStateInfo manifests = 2 [(nanopb).max_count = 2];
+}

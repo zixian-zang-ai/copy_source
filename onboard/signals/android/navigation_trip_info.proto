@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+
+message NavigationTripInfo {
+  required string instruction = 1 [(nanopb).max_length = 64];
+  required string turn_distance = 2 [(nanopb).max_length = 16];
+  required bytes turn_icon = 3 [(nanopb).max_size = 40000];
+};

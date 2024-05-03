@@ -1,0 +1,23 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+import "onboard/signals/adas/image_and_detections.proto";
+import "onboard/signals/adas/traffic_light_state.proto";
+import "onboard/signals/autonomy/visualization/agent.proto";
+import "onboard/signals/autonomy/visualization/debug_message.proto";
+import "onboard/signals/autonomy/visualization/status.proto";
+
+// This message defines the detected objects message.
+message DetectedObjects {
+  // The autonomy module sending the detected objects message
+  required string autonomy_module = 1 [(nanopb).max_length = 50];
+  // Status expresses the availablility/reliability of the stream.
+  required Status status = 2;
+  // Agents detected.
+  repeated Agent agents = 3 [(nanopb).max_count = 100];
+  required TrafficLightState traffic_light = 4;
+  repeated DebugMessage debug_messages = 5 [(nanopb).max_count = 10];
+  required Pose2D stop_line_location = 6;
+}

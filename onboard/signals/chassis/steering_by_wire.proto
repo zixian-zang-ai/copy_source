@@ -1,0 +1,23 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "onboard/signals/common_types/si_units.proto";
+
+enum SteeringMode {
+  STEERING_MODE_IDLE = 0;
+  STEERING_MODE_SINE_ANGLE = 1;
+  STEERING_MODE_STEP_ANGLE = 2;
+  STEERING_MODE_ADAS = 3;
+  STEERING_MODE_DRIVING = 4;
+}
+
+message SteeringByWire {
+  // polaris feeling unit angle in angle deg
+  required AngleDegree polaris_angle_deg = 1;
+
+  // front steering ratio coefficient of steering by wire system
+  required float front_steering_coeff = 2;
+
+  required SteeringMode steering_mode = 3;
+}

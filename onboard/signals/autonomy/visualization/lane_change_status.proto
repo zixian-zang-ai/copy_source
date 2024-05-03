@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+package moz.msg;
+option java_package = "co.applied.protos";
+option java_outer_classname = "LaneChangeStatusProtos";
+
+enum LaneChangeStatusType {
+  LANE_CHANGE_STATUS_TYPE_NONE = 0;
+  LANE_CHANGE_STATUS_TYPE_FAILED_INVALID_ODD_LANE = 1;
+  LANE_CHANGE_STATUS_TYPE_FAILED_DYNAMIC_AGENTS_PRESENT = 2;
+  LANE_CHANGE_STATUS_TYPE_ACTIVE_LEFT = 3;
+  LANE_CHANGE_STATUS_TYPE_ACTIVE_RIGHT = 4;
+}
+
+// Status Enums
+message LaneChangeStatus {
+  required LaneChangeStatusType status = 1;
+}

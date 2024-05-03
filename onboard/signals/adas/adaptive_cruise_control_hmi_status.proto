@@ -1,0 +1,21 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "onboard/signals/common_types/si_units.proto";
+
+enum AccHmiStatusEnum {
+  ACC_HMI_STATUS_ENUM_ACC_HMI_STATUS_INVALID = 0;
+  ACC_HMI_STATUS_ENUM_ACC_HMI_STATUS_OFF = 1;
+  ACC_HMI_STATUS_ENUM_ACC_HMI_STATUS_STANDBY = 2;
+  ACC_HMI_STATUS_ENUM_ACC_HMI_STATUS_ACTIVE_WITHOUT_TARGET = 3;
+  ACC_HMI_STATUS_ENUM_ACC_HMI_STATUS_ACTIVE_WITH_TARGET = 4;
+  ACC_HMI_STATUS_ENUM_ACC_HMI_STATUS_CURVE = 5;
+  ACC_HMI_STATUS_ENUM_ACC_HMI_STATUS_TRAFFIC = 6;
+}
+
+message AdaptiveCruiseControlHmiStatus {
+  required AccHmiStatusEnum adaptive_cruise_control_hmi_status = 1
+      [default = ACC_HMI_STATUS_ENUM_ACC_HMI_STATUS_OFF];
+  required KilometerPerHour operating_speed = 2;
+}

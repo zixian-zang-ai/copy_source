@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+package moz.msg;
+
+/// A request from the user to lock the doors (via key fob, app, button).
+enum DoorLockRequestedState {
+  DOOR_LOCK_REQUESTED_STATE_UNLOCK = 0;  /// User requested to unlock the vehicle.
+  DOOR_LOCK_REQUESTED_STATE_LOCK = 1;    /// User requested to lock the vehicle.
+}
+
+message UserDoorLockUnlockReq {
+  required DoorLockRequestedState requested_lock_state = 1;
+};

@@ -1,0 +1,50 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+import "onboard/signals/common_types/vehicle_timestamp.proto";
+import "onboard/signals/system/service_state.proto";
+
+/// Provides version information about the running service on the vehicle
+message ServiceVersion {
+  /// Git version that the code was compiled on (as determined by git describe --always)
+  required string git_version = 1 [(nanopb).max_length = 100];
+
+  /// SHA256 hash of the content of a given binary
+  required string content_sha = 2 [(nanopb).max_length = 100];
+};
+
+/// Service info that is shared with the orchestrator
+message SharedServiceInfo {
+  /// Service start time .
+  required VehicleTimestamp start_time = 1;
+  /// Heartbeat Time
+  required VehicleTimestamp heartbeat_time = 2;
+
+  /// Name of the service
+  required string service_name = 3 [(nanopb).max_length = 50];
+
+  /// PID of the main service process
+  required uint64 process_id = 4;
+
+  /// Name of the MPK that the service is in
+  required string mosaic_package_name = 5 [(nanopb).max_length = 50];
+
+  /// Version information of the Service
+  required ServiceVersion version = 6;
+}
+
+/// Provides information about the running service running on the vehicle
+message ServiceInfo {
+  /// Name of the board that the ros node resides on
+  required string board_name = 1 [(nanopb).max_length = 20];
+
+  /// Request ID of the service info request
+  reserved 2;
+
+  /// Observed state of the service by itself
+  required ServiceObservedServiceState service_observed_service_state = 3;
+
+  required SharedServiceInfo shared_service_info = 4;
+};

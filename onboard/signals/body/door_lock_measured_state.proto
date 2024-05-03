@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+package moz.msg;
+
+/// Possible lock state for door locks.
+enum LockState {
+  LOCK_STATE_UNKNOWN = 0;       /// Unknown (to initialize)
+  LOCK_STATE_UNLOCKED = 1;      /// Unlocked
+  LOCK_STATE_LOCKED = 2;        /// Locked
+  LOCK_STATE_NON_EXISTENT = 3;  /// The door hardware is not there
+}
+
+message DoorLockMeasuredState {
+  required LockState lock_state = 1;
+};

@@ -1,0 +1,7 @@
+syntax = "proto2";
+
+package moz.msg;
+
+message AndroidCapabilities {
+  required uint32 capabilities = 1;
+};

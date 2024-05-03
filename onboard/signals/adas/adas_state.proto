@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+package moz.msg;
+
+enum AdasStateType {
+  ADAS_STATE_TYPE_IDLE = 0;
+  ADAS_STATE_TYPE_READY = 1;
+  ADAS_STATE_TYPE_ON = 2;
+}
+
+message AdasState {
+  required AdasStateType adas_state = 1;
+};

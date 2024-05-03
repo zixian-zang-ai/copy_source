@@ -1,0 +1,9 @@
+syntax = "proto2";
+
+import "nanopb.proto";
+
+package moz.msg;
+
+message UpdateUserUuidReq {
+  required string user_uuid = 1 [(nanopb).max_length = 37];
+}

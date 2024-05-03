@@ -1,0 +1,8 @@
+syntax = "proto2";
+
+package moz.msg;
+
+message BrakeRequest {
+  // TODO: tighten up the types and semantics of this field
+  required float brake_request = 1;
+};

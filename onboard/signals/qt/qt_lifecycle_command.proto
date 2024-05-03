@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+package moz.msg;
+
+/// Possible intent for QT lifecycle.
+enum QtLifecycleIntent {
+  QT_LIFECYCLE_INTENT_SHOULD_START = 0;
+  QT_LIFECYCLE_INTENT_SHOULD_PAUSE = 1;
+  QT_LIFECYCLE_INTENT_SHOULD_BACKGROUND = 2;
+  QT_LIFECYCLE_INTENT_SHOULD_RESUME = 3;
+  QT_LIFECYCLE_INTENT_SHOULD_STOP = 4;
+}
+
+message QtLifecycleCommand {
+  required QtLifecycleIntent intent = 1;
+};

@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+package moz.msg;
+
+message VehicleRotation {
+  required float omega_x = 1;      // Roll about x-axis
+  required float omega_y = 2;      // Pitch about y-axis
+  required float accel_z = 3;      // Accel in z-axis
+  required uint32 omega_x_cf = 4;  // Confidence factor for roll about x
+  required uint32 omega_y_cf = 5;  // Confidence factor for pitch about y
+  required uint32 accel_z_cf = 6;  // Confidence factor for accel in z
+};

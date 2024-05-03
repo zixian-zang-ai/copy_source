@@ -1,0 +1,20 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "onboard/signals/body/blinker_state.proto";
+
+enum LkaHmiStatusEnum {
+  LKA_HMI_STATUS_ENUM_LKA_HMI_STATUS_INVALID = 0;
+  LKA_HMI_STATUS_ENUM_LKA_HMI_STATUS_OFF = 1;
+  LKA_HMI_STATUS_ENUM_LKA_HMI_STATUS_WHITE = 2;
+  LKA_HMI_STATUS_ENUM_LKA_HMI_STATUS_GREEN = 3;
+  LKA_HMI_STATUS_ENUM_LKA_HMI_STATUS_YELLOW = 4;
+  LKA_HMI_STATUS_ENUM_LKA_HMI_STATUS_BLUE = 5;
+}
+
+message LaneKeepAssistHmiStatus {
+  required LkaHmiStatusEnum lane_keep_assist_hmi_status = 1
+      [default = LKA_HMI_STATUS_ENUM_LKA_HMI_STATUS_OFF];
+  required BlinkerStateEnum lane_change_direction = 2 [default = BLINKER_STATE_ENUM_BLINKER_NONE];
+}

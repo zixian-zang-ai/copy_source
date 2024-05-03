@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+
+message DataLoggerSessionRequest {
+  required bool enable_data_logger_session =
+      1;  // Dictates whether request starts (true) or stops (false) a session.
+  required string logging_rule_uuid = 2 [(nanopb).max_length = 37];
+}

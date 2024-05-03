@@ -1,0 +1,24 @@
+syntax = "proto2";
+
+import "nanopb.proto";
+
+package moz.msg;
+
+enum BackgroundImage {
+  BACKGROUND_IMAGE_UNSPECIFIED = 0;
+  BACKGROUND_IMAGE_CARBON_FIBER = 1;
+  BACKGROUND_IMAGE_GLASS_DISKS = 2;
+  BACKGROUND_IMAGE_GALAXY = 3;
+  BACKGROUND_IMAGE_HERITAGE_PEPITA = 4;
+  BACKGROUND_IMAGE_MYSTIC_HILLS = 5;
+  BACKGROUND_IMAGE_MARTINI_RACING = 6;
+  BACKGROUND_IMAGE_DIGITAL_DRIFT = 7;
+}
+
+message UserVehicleSettingsTopic {
+  required string user_name = 1 [(nanopb).max_length = 40];
+  required uint32 interior_color_r = 2;
+  required uint32 interior_color_g = 3;
+  required uint32 interior_color_b = 4;
+  required BackgroundImage background_image = 5;
+}

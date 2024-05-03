@@ -1,0 +1,21 @@
+syntax = "proto2";
+
+package moz.msg;
+
+/// Possible commands for door locks.
+enum DoorLockCommandedState {
+  /// The door has not been commanded to do anything. No-op.
+  DOOR_LOCK_COMMANDED_STATE_UNSPECIFIED = 0;
+  /// The door has been commanded to unlock, and confirmed to be unlocked.
+  DOOR_LOCK_COMMANDED_STATE_UNLOCKED = 1;
+  /// The door has been commanded to lock, and confirmed to be locked.
+  DOOR_LOCK_COMMANDED_STATE_LOCKED = 2;
+  /// The door have been commanded to unlock, but the lock operation has not yet been confirmed.
+  DOOR_LOCK_COMMANDED_STATE_UNLOCK_COMMANDED_NOT_CONFIRMED = 3;
+  /// The door have been commanded to lock, but the lock operation has not yet been confirmed.
+  DOOR_LOCK_COMMANDED_STATE_LOCK_COMMANDED_NOT_CONFIRMED = 4;
+}
+
+message DoorLockCommand {
+  required DoorLockCommandedState door_lock_commanded_state = 1;
+};

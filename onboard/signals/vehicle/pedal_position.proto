@@ -1,0 +1,7 @@
+syntax = "proto2";
+
+package moz.msg;
+
+message PedalPosition {
+  required float accel_pedal_pos = 1;
+};

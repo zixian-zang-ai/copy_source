@@ -1,0 +1,8 @@
+syntax = "proto2";
+
+package moz.msg;
+import "nanopb.proto";
+
+message FwVersion {
+  required string fw_ver = 1 [(nanopb).max_length = 10];
+}

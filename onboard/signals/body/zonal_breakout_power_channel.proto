@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+
+message PowerChannelState {
+  required string zone = 1 [(nanopb).max_length = 40];
+  // Channel_id refers to the enumeration of the power output channel on the zonal breakout board.
+  // There are 20 channels numbered 1 - 20.
+  required uint32 channel_id = 2;     // 1-20.
+  required float output_current = 3;  // amps
+  required float output_voltage = 4;  // volts
+};

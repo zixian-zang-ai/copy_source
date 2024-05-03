@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+import "onboard/signals/autonomy/visualization/navigation_waypoint.proto";
+
+// This message defines the route message.
+message Route {
+  repeated NavigationWaypoint waypoints = 1
+      [(nanopb).max_count = 100];  // A polyline representation of the route followed by the stack.
+                                   // Each point on the polyline is in lat long coordinates.
+}

@@ -1,0 +1,23 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+import "onboard/signals/autonomy/visualization/debug_message.proto";
+import "onboard/signals/autonomy/visualization/pose3d.proto";
+import "onboard/signals/autonomy/visualization/status.proto";
+import "onboard/signals/autonomy/visualization/trajectory.proto";
+
+// This message defines the planner message.
+message Planner {
+  // The autonomy module sending the planner message
+  required string autonomy_module = 1 [(nanopb).max_length = 50];
+  // Status expresses the availablility/reliability of planner messages.
+  required Status status = 2;
+  // Planner generates multiple trajectories. The first trajectory in the
+  // sequence is always the one that is selected among multiple options.
+  repeated Trajectory trajectories = 3 [(nanopb).max_count = 1];
+  required bool approaching_lane_change = 4;
+  repeated DebugMessage debug_messages = 5 [(nanopb).max_count = 10];
+  required Pose3D future_pose = 6;  // Future pose of the vehicle after a lane shift.
+}

@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+package moz.msg;
+
+message FromAaosToBoardHeartbeat {
+  required bool alive = 1;
+}
+
+message FromBoardToAaosHeartbeat {
+  required bool alive = 1;
+}

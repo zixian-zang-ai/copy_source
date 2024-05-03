@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+package moz.msg;
+
+enum BrakeIntentType {
+  BRAKE_INTENT_TYPE_RELEASED = 0;
+  BRAKE_INTENT_TYPE_PRESSED = 1;
+  // TODO: remove this to avoid being overloaded
+  BRAKE_INTENT_TYPE_UNDEFINED = 255;
+}
+
+message BrakeIntent {
+  required BrakeIntentType brake_intent = 1;
+};

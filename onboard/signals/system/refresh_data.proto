@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+package moz.msg;
+option java_package = "co.applied.protos";
+option java_outer_classname = "OtaProgressProto";
+
+enum RefreshType {
+  REFRESH_TYPE_UNSET = 0;
+  REFRESH_TYPE_GET_UPDATE_INFO = 1;
+  REFRESH_TYPE_GET_SOFTWARE_UPDATE = 2;
+}
+
+message RefreshData {
+  required RefreshType refresh_type = 3;
+};

@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+package moz.msg;
+
+message AccelGyro {
+  required uint32 crc = 1;
+  required uint32 counter_bz = 2;  // Counter
+  required float accel_x = 3;      // Acceleration in x-axis
+  required float accel_y = 4;      // Acceleration in y-axis
+  required float omega_z = 5;      // Yaw rate about the z-axis
+  required uint32 accel_x_cf = 6;  // Confidence factor for accel in x
+  required uint32 accel_y_cf = 7;  // Confidence factor for accel in y
+  required uint32 omega_z_cf = 8;  // Confidence factor for yaw about z
+};

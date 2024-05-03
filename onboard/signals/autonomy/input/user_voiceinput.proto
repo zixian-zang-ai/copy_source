@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+package moz.msg;
+option java_package = "co.applied.protos";
+option java_outer_classname = "UserVoiceInputProtos";
+
+enum UserVoiceInputLaneChangeDirection {
+  USER_VOICE_INPUT_LANE_CHANGE_DIRECTION_NONE = 0;   // No lane changes
+  USER_VOICE_INPUT_LANE_CHANGE_DIRECTION_LEFT = 1;   // Lane change to the left
+  USER_VOICE_INPUT_LANE_CHANGE_DIRECTION_RIGHT = 2;  // Lane change to the right
+}
+
+// This message defines the interface for messages sent as per the user's voice input
+//  on mosaic to an autonomy stack.
+message UserVoiceInput {
+  required UserVoiceInputLaneChangeDirection lane_change = 1;
+}

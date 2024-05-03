@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "onboard/signals/testing/baseline_status.proto";
+
+enum BaselineCommandType {
+  BASELINE_COMMAND_TYPE_START = 0;
+  BASELINE_COMMAND_TYPE_QUIET = 1;
+}
+
+message BaselineCommand {
+  required BaselineCommandType command = 1;
+  required BaselineTester node = 2;
+}

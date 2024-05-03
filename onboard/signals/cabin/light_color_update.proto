@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+
+message LightColorUpdate {
+  required uint32 r_value = 1 [(nanopb).int_size = IS_8];
+  required uint32 g_value = 2 [(nanopb).int_size = IS_8];
+  required uint32 b_value = 3 [(nanopb).int_size = IS_8];
+}

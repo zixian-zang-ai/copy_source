@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+package moz.msg;
+
+// This message defines a quaternion representation.
+message Quaternion {
+  required double w = 1;  // unitless
+  required double x = 2;  // unitless
+  required double y = 3;  // unitless
+  required double z = 4;  // unitless
+}

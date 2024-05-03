@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+import "onboard/signals/autonomy/visualization/color.proto";
+
+// Status Enums
+message DebugMessage {
+  required string message = 1 [(nanopb).max_length = 100];
+  required uint32 font_size = 2;
+  required Color color = 3;
+}

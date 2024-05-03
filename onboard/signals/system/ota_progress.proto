@@ -1,0 +1,23 @@
+syntax = "proto2";
+
+package moz.msg;
+option java_package = "co.applied.protos";
+option java_outer_classname = "OtaProgressProto";
+
+import "nanopb.proto";
+
+import "onboard/signals/hive/vehicle_campaign_status.proto";
+
+message ProgressInfo {
+  // See the ota_stage.h for mapping of int to enum.
+  required uint32 ota_stage = 1;
+  // The following fields are ONLY tracked for IN_PROGRESS states.
+  required uint64 total_tasks = 2;
+  required uint64 tasks_completed = 3;
+  required hive.ota.VehicleCampaignStatus.Status campaign_status = 4;
+}
+
+message OtaProgress {
+  required string campaign_uuid = 1 [(nanopb).max_length = 37];
+  required ProgressInfo progress_info = 2;
+}

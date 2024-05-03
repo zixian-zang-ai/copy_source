@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+import "nanopb.proto";
+
+package moz.msg;
+
+message ScreenshotRequest {
+  required string save_dir = 1 [(nanopb).max_length = 50];
+  required string save_filename_png = 2 [(nanopb).max_length = 50];
+  required string window_name = 3 [(nanopb).max_length = 20];
+}

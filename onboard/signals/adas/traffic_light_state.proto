@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+package moz.msg;
+
+enum TrafficLightStateEnum {
+  TRAFFIC_LIGHT_STATE_ENUM_UNAVAILABLE = 0;
+  TRAFFIC_LIGHT_STATE_ENUM_UNKNOWN = 1;
+  TRAFFIC_LIGHT_STATE_ENUM_RED = 2;
+  TRAFFIC_LIGHT_STATE_ENUM_YELLOW = 3;
+  TRAFFIC_LIGHT_STATE_ENUM_GREEN = 4;
+}
+
+message TrafficLightState {
+  required TrafficLightStateEnum traffic_light_state = 1
+      [default = TRAFFIC_LIGHT_STATE_ENUM_UNKNOWN];
+}

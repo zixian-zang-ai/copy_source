@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+import "nanopb.proto";
+
+package moz.msg;
+
+message ToggleValetModeRequest {
+  required bool activate =
+      1;  // true if we want to activate valet mode, false if we want to deactivate valet mode
+  required string pin = 2
+      [(nanopb).max_length = 6];  // pin to set if activate=True, pin to verify if activate=False
+  required bool force = 3;  // bypasses the pin check to force deactivate (only sent from cloud)
+}

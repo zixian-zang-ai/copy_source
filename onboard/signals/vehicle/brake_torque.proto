@@ -1,0 +1,28 @@
+syntax = "proto2";
+
+package moz.msg;
+
+// Adapted directly from ESP_22 Message within ICAN Matrix (ID 0x0EF)
+message BrakeTorque {
+  // To-Do: Need to connect to CanMessageInfo in taycan_bridge_constants.h
+  // uint8 crc
+  // uint8 counter_bz
+  // bool qbit_fl_brake_torque
+  // bool qbit_fr_brake_torque
+  // bool qbit_rl_brake_torque
+  // bool qbit_rr_brake_torque
+
+  // TODO Document units
+  required uint32 fl_brake_torque = 1;
+  required uint32 fr_brake_torque = 2;
+  required uint32 rl_brake_torque = 3;
+  required uint32 rr_brake_torque = 4;
+
+  // Percent of oversteer
+  required double oversteer = 5;
+
+  // Percent of understeer
+  required double understeer = 6;
+
+  optional double brake_pressure = 7;
+};

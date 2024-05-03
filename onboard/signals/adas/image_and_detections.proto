@@ -1,0 +1,42 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+
+import "onboard/signals/camera/image.proto";
+
+message ImageAndDetections {
+  // sensor_msgs/CompressedImage
+  required CompressedImage compressed_img = 1;
+  repeated ImageDetection2D detections = 2 [(nanopb).max_count = 40];
+  required string sensor_id = 3 [(nanopb).max_length = 50];
+}
+
+message ImageDetections {
+  repeated ImageDetection2D detections = 1 [(nanopb).max_count = 40];
+}
+
+message ImageDetection2D {
+  required uint32 class_id = 1;
+  required string class_name = 2 [(nanopb).max_length = 20];
+  required double class_score = 3;
+  required BoundingBox2D bbox = 4;
+}
+
+// 2D bounding box surrounding the object.
+message BoundingBox2D {
+  // The 2D position (in pixels) and orientation of the bounding box center.
+  required Pose2D center = 1;
+
+  // The size (in pixels) of the bounding box surrounding the object relative
+  // to the pose of its center.
+  required double size_x = 2;
+  required double size_y = 3;
+}
+
+message Pose2D {
+  required double x = 1;
+  required double y = 2;
+  required double theta = 3;
+}

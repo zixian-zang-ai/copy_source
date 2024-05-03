@@ -1,0 +1,22 @@
+syntax = "proto2";
+
+package moz.msg;
+
+enum CameraViewerCamera {
+  CAMERA_VIEWER_CAMERA_NONE = 0;
+  CAMERA_VIEWER_CAMERA_REAR = 1;
+  CAMERA_VIEWER_CAMERA_LEFT_SIDE = 2;
+  CAMERA_VIEWER_CAMERA_RIGHT_SIDE = 3;
+  CAMERA_VIEWER_CAMERA_FRONT = 4;
+  CAMERA_VIEWER_CAMERA_FRONT_LEFT = 5;
+  CAMERA_VIEWER_CAMERA_FRONT_RIGHT = 6;
+};
+
+message QtCameraStatus {
+  required CameraViewerCamera camera = 1;
+};
+
+message QtCameraViewerCommand {
+  /// Possible intent for QT lifecycle.
+  required CameraViewerCamera camera_to_show = 2;
+};

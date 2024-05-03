@@ -1,0 +1,29 @@
+syntax = "proto2";
+
+import "nanopb.proto";
+
+package moz.msg;
+
+message HonkFlashSequence {
+  message HonkOrFlash {
+    enum AlertType {
+      ALERT_TYPE_UNSET = 0;
+      ALERT_TYPE_HONK = 1;
+      ALERT_TYPE_FLASH = 2;
+    }
+    required AlertType type = 1;
+    required int32 duration_ms = 3;   // How long the alert should be active.
+    required int32 wait_time_ms = 2;  // Wait Time after each alert.
+  }
+
+  repeated HonkOrFlash honks_and_flashes = 1 [(nanopb).max_count = 32];
+  // Number of times to repeat the above sequence.
+  // This should always be at least one unless stop_sequence is True.
+  required int32 repeat_times = 2;
+  // Stops any active honk and flash sequence.
+  // If stop_sequence is True, all other fields should be unset.
+  required bool stop_sequence = 3;
+  // TraceId for the flash sequence command
+  // This can be used for stopping a scheduled flash sequence anytime
+  required string uuid = 4 [(nanopb).max_length = 37];
+}

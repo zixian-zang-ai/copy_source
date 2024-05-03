@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+package moz.msg;
+
+enum QtAppStatus {
+  QT_APP_STATUS_INACTIVE = 0;
+  QT_APP_STATUS_ACTIVE = 1;
+  QT_APP_STATUS_PAUSED = 2;
+  QT_APP_STATUS_BACKGROUND = 3;
+  QT_APP_STATUS_OFF = 4;
+}
+
+message QtAppStateResponse {
+  required QtAppStatus status = 1;
+};

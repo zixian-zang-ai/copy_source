@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+package moz.msg;
+
+enum AdasIntentState {
+  ADAS_INTENT_STATE_NONE = 0;
+  ADAS_INTENT_STATE_ON = 1;
+}
+
+message AdasIntent {
+  required AdasIntentState adas_intent = 1;
+};

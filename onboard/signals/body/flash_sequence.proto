@@ -1,0 +1,21 @@
+syntax = "proto2";
+
+import "nanopb.proto";
+
+package moz.msg;
+
+import "onboard/signals/common_types/vehicle_timestamp.proto";
+
+message FlashSequence {
+  message Flash {
+    required int32 duration_ms = 1;   // How long the flash should be active.
+    required int32 wait_time_ms = 2;  // Wait Time after each flash.
+  }
+
+  repeated Flash flashes = 1 [(nanopb).max_count = 32];
+  // Start time to schedule the flashes
+  required VehicleTimestamp start_time = 2;
+  // TraceId for the flash sequence command
+  // This can be used for stopping a scheduled flash sequence anytime
+  required string uuid = 3 [(nanopb).max_length = 37];
+};

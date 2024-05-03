@@ -1,0 +1,10 @@
+syntax = "proto2";
+
+package moz.msg;
+
+// NOTE: Kept in sync with enum defined in node_observed_node_state.h
+enum ServiceObservedServiceState {
+  SERVICE_OBSERVED_SERVICE_STATE_UNSET = 0;
+  SERVICE_OBSERVED_SERVICE_STATE_SUSPEND_READY = 1;
+  SERVICE_OBSERVED_SERVICE_STATE_RUNNING = 2;
+};

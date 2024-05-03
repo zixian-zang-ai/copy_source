@@ -1,0 +1,45 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+import "onboard/signals/system/service_info.proto";
+import "onboard/signals/common_types/vehicle_state.proto";
+import "onboard/signals/common_types/transition_status.proto";
+
+/// Provides information about all running services on a given
+/// compute element as well as information about service transitions related to the
+/// board itself
+enum ServiceState {
+  SERVICE_STATE_CREATED = 0;
+  SERVICE_STATE_STARTED = 1;
+  SERVICE_STATE_RUNNING = 2;
+  SERVICE_STATE_SUSPEND_REQUESTED = 3;
+  SERVICE_STATE_SUSPENDED = 4;
+  SERVICE_STATE_WAKING = 5;
+  SERVICE_STATE_NOT_RUNNING = 6;
+}
+
+message OrchestratorObservedServiceInfo {
+  required SharedServiceInfo shared_service_info = 1;
+
+  required ServiceState orchestrator_observed_service_state = 2
+      [default = SERVICE_STATE_NOT_RUNNING];
+}
+
+message ComputeElementState {
+  /// commanded state of the vehicle as determined by the vehicle state manager
+  required VehicleStateMode commanded_vehicle_state = 1 [default = VEHICLE_STATE_MODE_SLEEP];
+
+  /// Transition status of the board specifically for its own services
+  required TransitionStatus board_transition_status = 2
+      [default = TRANSITION_STATUS_NOT_TRANSITIONING];
+
+  reserved 3;
+
+  /// Name of the board that is being run
+  required string board_name = 4 [(nanopb).max_length = 20];
+
+  /// Information about all of the services running on the board
+  repeated OrchestratorObservedServiceInfo services = 5 [(nanopb).max_count = 40];
+};

@@ -1,0 +1,10 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "onboard/signals/common_types/camera.proto";
+
+message RemoteStreamingRequest {
+  required Camera camera = 1;
+  required bool enable_streaming = 2;
+};

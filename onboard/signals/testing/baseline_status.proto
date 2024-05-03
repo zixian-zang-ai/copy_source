@@ -1,0 +1,20 @@
+syntax = "proto2";
+
+package moz.msg;
+
+enum BaselineTester {
+  BASELINE_TESTER_ALL = 0;
+  BASELINE_TESTER_PUBLISH_TESTER = 1;
+  BASELINE_TESTER_ECHO_TESTER = 2;
+}
+
+enum BaselineState {
+  BASELINE_STATE_FINISHED = 0;
+  BASELINE_STATE_QUIET = 1;
+  BASELINE_STATE_READY = 2;
+}
+
+message BaselineStatus {
+  required BaselineTester tester = 1;
+  required BaselineState state = 2;
+}

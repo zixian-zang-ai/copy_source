@@ -1,0 +1,53 @@
+syntax = "proto2";
+
+package moz.msg;
+option java_package = "co.applied.protos";
+option java_outer_classname = "MmcrProtos";
+
+// TODO adapt the messages once the sender is set
+message ChargingStation {
+  required uint32 voltage = 1;
+  required uint32 power = 2;
+  required uint32 time_next_charging = 3;
+}
+
+message ChargeReadyActivation {
+  required bool activ = 1;
+}
+
+enum BatteryThermalManagementStates {
+  // The battery is in a nominal state.
+  // This is the typical condition of the battery when it is not charging.
+  BATTERY_THERMAL_MANAGEMENT_STATES_NOMINAL = 0;
+
+  // The battery is in a charge ready state.
+  // It has been preheated and is ready to be charged.
+  BATTERY_THERMAL_MANAGEMENT_STATES_CHARGE_READY = 1;
+
+  // The battery is currently being preheated for charging.
+  BATTERY_THERMAL_MANAGEMENT_STATES_PREHEATING = 2;
+
+  // The battery thermal management state is not available.
+  BATTERY_THERMAL_MANAGEMENT_STATES_NOT_AVAILABLE = 3;
+};
+
+enum BatteryThermalManagementTargetState {
+  // When able, the battery thermal management system will attempt
+  // to bring the battery to a nominal state.
+  BATTERY_THERMAL_MANAGEMENT_TARGET_STATE_NOMINAL = 0;
+
+  // When able, the battery thermal management system will attempt
+  // to preheat the battery to reach an optimal state for charing.
+  BATTERY_THERMAL_MANAGEMENT_TARGET_STATE_CHARGE_READY = 1;
+};
+
+// Reports the current state of the battery thermal management system.
+message BatteryThermalManagementState {
+  required BatteryThermalManagementStates current_state = 1;
+  required BatteryThermalManagementTargetState target_state = 2;
+}
+
+// Requests the battery thermal management system to change its target state.
+message BatteryThermalManagementRequest {
+  required BatteryThermalManagementTargetState target_state = 1;
+}

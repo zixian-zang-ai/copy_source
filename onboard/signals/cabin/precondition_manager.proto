@@ -1,0 +1,75 @@
+syntax = "proto2";
+
+package moz.msg;
+option java_package = "co.applied.protos";
+option java_outer_classname = "MmcrProtos";
+
+import "onboard/signals/common_types/si_units.proto";
+import "nanopb.proto";
+
+message PreconditionManagerScheduleTimeOfDay {
+  // Hours of day in a 24 hour format
+  required uint32 precondition_manager_schedule_hour = 1;  // 0 -> 23
+
+  required uint32 precondition_manager_schedule_minute = 2;  // 0 -> 59
+}
+
+message PreconditionManagerScheduleDate {
+  required uint32 precondition_manager_schedule_year = 1;   // 0 -> 9999
+  required uint32 precondition_manager_schedule_month = 2;  // 1 -> 12
+  required uint32 precondition_manager_schedule_day = 3;    // 1 -> 31
+}
+
+message PreconditionManagerOneOffSchedule {
+  // One off schedule uses a set date and time
+  required PreconditionManagerScheduleDate schedule_date = 1;
+  required PreconditionManagerScheduleTimeOfDay schedule_time = 2;
+}
+
+message PreconditionManagerRecurringSchedule {
+  // Recurring schedule uses days of the week and a set time
+  repeated bool schedule_days_of_week = 1 [(nanopb).max_count = 7, (nanopb).fixed_count = true];
+  required PreconditionManagerScheduleTimeOfDay schedule_time_of_day = 2;
+}
+
+message PreconditionManagerScheduleNowRequest {
+  required bool schedule_now = 1;
+}
+
+message PreconditionManagerScheduleOneOffRequest {
+  required PreconditionManagerOneOffSchedule schedule_date_time = 1;
+}
+
+message PreconditionManagerScheduleRecurringRequest {
+  required PreconditionManagerRecurringSchedule schedule_days_time = 1;
+}
+
+enum PreconditionManagerState {
+  PRECONDITION_MANAGER_STATE_NONE = 0;
+  PRECONDITION_MANAGER_STATE_IN_PROGRESS = 1;
+  PRECONDITION_MANAGER_STATE_READY = 2;
+}
+
+message PreconditionManagerAddRequest {
+  oneof request_type {
+    PreconditionManagerScheduleNowRequest start_now_request = 1;
+    PreconditionManagerScheduleOneOffRequest one_off_request = 2;
+    PreconditionManagerScheduleRecurringRequest recurring_request = 3;
+  }
+
+  required DegreesCelsius temp_set_point = 4;
+  required Seconds hold_ready_time = 5;
+  required uint32 uuid = 6;
+}
+
+message PreconditionManagerCancelCurrentRequest {
+  required bool cancel_request = 1;
+}
+
+message PreconditionManagerCancelScheduledRequest {
+  required uint32 uuid = 1;
+}
+
+message PreconditionManagerPublishState {
+  required PreconditionManagerState precondition_manager_state = 1;
+}

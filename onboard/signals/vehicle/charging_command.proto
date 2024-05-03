@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+package moz.msg;
+
+message ChargingCommand {
+  enum Action {
+    ACTION_START_CHARGING = 0;
+    ACTION_STOP_CHARGING = 1;
+  }
+  required Action action = 1;
+};

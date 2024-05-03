@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+package moz.msg;
+option java_package = "co.applied.protos";
+option java_outer_classname = "TaskUpdatesProtos";
+
+import "onboard/signals/system/task_info.proto";
+import "nanopb.proto";
+
+message TaskUpdates {
+  // True if update is successful. False if update failed.
+  // TODO(Deepak): Expand this to an enum to be more descriptive.
+  required bool update_status = 1;
+  required TaskInfo task_info = 2;
+  // UUIDs of targets which are affected (like needed to restart) in this task.
+  // Length of UUID is 36
+  repeated string target_uuids = 3 [(nanopb).max_count = 80, (nanopb).max_length = 37];
+};

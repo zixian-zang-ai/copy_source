@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+package moz.msg;
+
+enum ValetModeStateEnum {
+  VALET_MODE_STATE_ENUM_OFF = 0;
+  VALET_MODE_STATE_ENUM_ON = 1;
+  VALET_MODE_STATE_ENUM_LOCKED = 2;
+}
+
+message ValetModeState {
+  required ValetModeStateEnum valet_mode_state = 1;
+}

@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+package moz.msg;
+
+enum OccupancyStateType {
+  OCCUPANCY_STATE_TYPE_ABSENT = 0;
+  OCCUPANCY_STATE_TYPE_PRESENT = 1;
+}
+
+message OccupancyState {
+  required OccupancyStateType occupancy_state = 1;
+}

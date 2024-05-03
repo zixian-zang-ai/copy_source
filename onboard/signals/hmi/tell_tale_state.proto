@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+package moz.msg;
+
+enum TellTaleStateEnum {
+  // TELL_TALE_STATE_UNINITIALIZED is the default state of the tell-tale system.
+  TELL_TALE_STATE_ENUM_UNINITIALIZED = 0;
+  // TELL_TALE_STATE_RUNTIME_NO_ERROR means there are no errors during runtime.
+  TELL_TALE_STATE_ENUM_RUNTIME_NO_ERROR = 1;
+  // TELL_TALE_STATE_FATAL_ERROR means there are fatal errors and the system must not be used.
+  TELL_TALE_STATE_ENUM_FATAL_ERROR = 2;
+}
+
+message TellTaleState {
+  required TellTaleStateEnum tell_tale_state = 1;
+}

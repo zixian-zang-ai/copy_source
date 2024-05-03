@@ -1,0 +1,7 @@
+syntax = "proto2";
+
+package moz.msg;
+
+message BlinkerRun {
+  required bool run_blinker_run = 1;
+}

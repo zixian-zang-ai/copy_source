@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+package moz.msg;
+
+// This message defines route information relative to the ego.
+message RouteInfo {
+  // True if ego is approaching a tollbooth.
+  required bool approaching_toll_booth = 1;
+  // True if ego is entering highway.
+  required bool approaching_highway_entrance = 2;
+  // True is ego is exiting highway.
+  required bool approaching_highway_exit = 3;
+}

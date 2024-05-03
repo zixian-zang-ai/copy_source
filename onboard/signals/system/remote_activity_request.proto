@@ -1,0 +1,20 @@
+syntax = "proto2";
+
+package moz.msg;
+
+enum RequestType {
+  REQUEST_TYPE_OTA = 0;
+  REQUEST_TYPE_SENTRY = 1;
+  REQUEST_TYPE_CAMERA_STREAMING = 2;
+};
+
+enum RequestState {
+  REQUEST_STATE_START = 0;
+  REQUEST_STATE_TERMINATE = 1;
+  REQUEST_STATE_CANCEL = 2;
+}
+
+message RemoteActivityRequest {
+  required RequestType request_type = 1;
+  required RequestState requested_state = 2;
+};

@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "onboard/signals/autonomy/visualization/route.proto";
+import "onboard/signals/autonomy/visualization/status.proto";
+
+// This message defines the navigation message.
+message Navigation {
+  required Status status =
+      1;  // Status expresses the availablility/reliability of navigation messages.
+  required Route route = 2;  // A polyline representation of the route followed by the stack.
+}

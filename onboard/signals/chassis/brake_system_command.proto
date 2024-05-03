@@ -1,0 +1,10 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "onboard/signals/common_types/si_units.proto";
+
+message BrakeSystemCommand {
+  required NewtonMeter regen_torque_command = 1;
+  required Newton mech_brake_command = 2;
+}

@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+package moz.msg;
+
+enum BlinkerStateEnum {
+  BLINKER_STATE_ENUM_BLINKER_NONE = 0;
+  BLINKER_STATE_ENUM_BLINKER_LEFT_INTERIM = 1;
+  BLINKER_STATE_ENUM_BLINKER_LEFT = 2;
+  BLINKER_STATE_ENUM_BLINKER_RIGHT_INTERIM = 3;
+  BLINKER_STATE_ENUM_BLINKER_RIGHT = 4;
+}
+
+message BlinkerState {
+  required BlinkerStateEnum turn_signal_state = 1;
+};

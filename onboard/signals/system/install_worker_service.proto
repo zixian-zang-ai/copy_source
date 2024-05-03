@@ -1,0 +1,97 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+import "onboard/signals/system/system_manifest.proto";
+
+// Request to roll back a given installation.
+// Fails if either current_install_id or previous_install_id don't match.
+message RollbackInstall {
+  required string current_install_id = 1 [(nanopb).max_length = 37];
+  required string previous_install_id = 2 [(nanopb).max_length = 37];
+}
+
+message ReapDeploy {
+  required string install_id = 1 [(nanopb).max_length = 37];
+  required string deploy_id = 2 [(nanopb).max_length = 37];
+}
+
+message ReapInstall {
+  required string install_id = 1 [(nanopb).max_length = 37];
+}
+
+message CommitInstall {
+  required string install_id = 1 [(nanopb).max_length = 37];
+}
+
+// Message from InstallManager to worker to deploy a set of configs.
+// DeployInstall messages are executed in the order they are received.
+// Within a given DeployInstall message, ordering does not matter.
+message DeployInstall {
+  // install_id is a unique identifier for the install job, and is generated when a manifest is
+  // applied.
+  required string board_name = 1 [(nanopb).max_length = 40];
+  required string install_id = 2 [(nanopb).max_length = 37];
+  required string deploy_id = 3 [(nanopb).max_length = 37];
+  repeated TargetConfig target_configs = 4 [(nanopb).max_count = 50];
+}
+
+enum InstallTargetState {
+  INSTALL_TARGET_STATE_UNSET = 0;
+  INSTALL_TARGET_STATE_PENDING = 1;
+  INSTALL_TARGET_STATE_INSTALLING = 2;
+  INSTALL_TARGET_STATE_INSTALLED = 3;
+  INSTALL_TARGET_STATE_ROLLING_BACK = 4;
+  INSTALL_TARGET_STATE_ROLLED_BACK = 5;
+}
+
+message InstallTargetStateInfo {
+  required string target_name = 1 [(nanopb).max_length = 37];
+  required InstallTargetState target_install_state = 2;
+}
+
+enum InstallDeployState {
+  INSTALL_DEPLOY_STATE_UNSET = 0;
+  INSTALL_DEPLOY_STATE_PENDING = 1;
+  INSTALL_DEPLOY_STATE_INSTALLING = 2;
+  INSTALL_DEPLOY_STATE_INSTALLED = 3;
+  INSTALL_DEPLOY_STATE_ROLLING_BACK = 4;
+  INSTALL_DEPLOY_STATE_ROLLED_BACK = 5;
+}
+
+// This is the state of deployment for a single DeployInstall request.
+// DeployInstall messages are executed in the order they are received.
+message DeployState {
+  required string deploy_id = 1 [(nanopb).max_length = 37];
+  required InstallDeployState deploy_state = 2;
+  repeated InstallTargetStateInfo target_states = 3 [(nanopb).max_count = 50];
+}
+
+enum InstallWorkerState {
+  INSTALL_WORKER_STATE_UNSPECIFIED = 0;
+  // Default state. Ready to install.
+  INSTALL_WORKER_STATE_IDLE = 1;
+  // There is an installation in progress.
+  INSTALL_WORKER_STATE_INSTALLING = 2;
+  // There is a rollback in progress.
+  INSTALL_WORKER_STATE_ROLLING_BACK = 3;
+  // Nothing is in progress, but an install is partially done.
+  INSTALL_WORKER_STATE_INSTALL_BLOCKED = 4;
+  // Nothing is in progress, but a rollback is partially done.
+  INSTALL_WORKER_STATE_ROLLBACK_BLOCKED = 5;
+  // An installation has completed.
+  INSTALL_WORKER_STATE_INSTALLED = 6;
+  // A rollback has completed.
+  INSTALL_WORKER_STATE_ROLLED_BACK = 7;
+}
+
+// This message is published by Install Workers periodically when there is an active installation.
+// States are stored per DeployInstall message, inside DeployState.
+message InstallWorkerStateInfo {
+  required string board_name = 1 [(nanopb).max_length = 40];
+  required string stable_install_id = 2 [(nanopb).max_length = 37];
+  required string target_install_id = 3 [(nanopb).max_length = 37];
+  required InstallWorkerState install_worker_state = 4;
+  repeated DeployState deploy_states = 5 [(nanopb).max_count = 16];
+}

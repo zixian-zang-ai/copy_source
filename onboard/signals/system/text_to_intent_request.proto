@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+
+// Used by the voice assistant to get user intent from their transcribed speech.
+message TextToIntentRequest {
+  // Used to associate request with response.
+  required string request_uuid = 1 [(nanopb).max_length = 37];
+  // The transcribed speech.
+  required string text = 2 [(nanopb).max_length = 1024];
+}

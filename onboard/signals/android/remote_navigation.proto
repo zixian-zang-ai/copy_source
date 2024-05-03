@@ -1,0 +1,10 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+
+message RemoteNavigation {
+  // Sample URI: https://maps.app.goo.gl/2WHcAhH73eH8vEWq5 -- length = 41 plus buffer
+  required string google_maps_uri = 1 [(nanopb).max_length = 50];
+};

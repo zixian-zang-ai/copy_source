@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+package moz.msg;
+
+message RearSteeringCommand {
+  // the range of this signal is the full range of a 10-bit unsigned int (0-1023), no unit
+  // It is used by DCE to discribe and send command for steering rack displacement.
+  // https://dcemotorsport.com/epas/
+  //
+  required uint32 rear_angle_command_10bit = 1;
+};

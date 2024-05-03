@@ -1,0 +1,9 @@
+syntax = "proto2";
+
+package moz.msg;
+
+enum TransitionStatus {
+  TRANSITION_STATUS_NOT_TRANSITIONING = 0;
+  TRANSITION_STATUS_TRANSITIONING = 1;
+  TRANSITION_STATUS_UNKNOWN = 2;
+}

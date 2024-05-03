@@ -1,0 +1,24 @@
+syntax = "proto2";
+
+package moz.msg;
+option java_package = "co.applied.protos";
+option java_outer_classname = "SteeringHIDInputsProtos";
+
+import "nanopb.proto";
+import "onboard/signals/cabin/steering_button_state.proto";
+
+enum SteeringHIDType {
+  STEERING_HID_TYPE_NONE = 0;
+  STEERING_HID_TYPE_TAYCAN = 1;
+  STEERING_HID_TYPE_TESLA = 2;
+  STEERING_HID_TYPE_MLBEVO = 3;
+  STEERING_HID_TYPE_DATASPEED = 4;
+  STEERING_HID_TYPE_KONG = 5;
+  STEERING_HID_TYPE_NAVI = 6;
+};
+
+message SteeringHIDInputs {
+  // max count is the max number of buttons on the steering wheel
+  repeated SteeringButtonState button_states = 1 [(nanopb).max_count = 11];
+  required SteeringHIDType steering_hid_type = 2;
+}

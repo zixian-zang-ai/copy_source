@@ -1,0 +1,9 @@
+syntax = "proto2";
+
+package moz.msg;
+
+// This message defines navigation waypoints in lat long coordinates.
+message NavigationWaypoint {
+  required float latitude = 1;   // Latitude coordinate in degrees
+  required float longitude = 2;  // Longitude coordinate in degrees
+}

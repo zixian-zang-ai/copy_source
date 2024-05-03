@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+
+enum AliveStatus {
+  ALIVE_STATUS_NONE = 0;
+  ALIVE_STATUS_DDS_NODE = 1;
+  ALIVE_STATUS_ROS_NODE = 2;
+};
+
+message VehicleServiceHeartbeat {
+  required AliveStatus alive = 1;
+  required string wifi_ip = 2 [(nanopb).max_length = 10];
+  required bool shared_storage_health = 3;
+}

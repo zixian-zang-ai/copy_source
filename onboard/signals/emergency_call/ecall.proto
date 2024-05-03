@@ -1,0 +1,38 @@
+syntax = "proto2";
+
+package moz.msg;
+
+// The states of the ECall system.
+enum ECallMode {
+  // The ECall system is booting.
+  E_CALL_MODE_BOOTING = 0;
+
+  // The ECall system is not active.
+  E_CALL_MODE_STANDBY = 1;
+
+  // Starting an Emergency Call.
+  E_CALL_MODE_INITIALIZING = 2;
+
+  // An Emergency Call is in progress.
+  E_CALL_MODE_CALL_IN_PROGRESS = 3;
+
+  // The ECall system is in an Error State.
+  E_CALL_MODE_ERROR = 4;
+}
+
+// Start an Emergency Call.
+// Does nothing if there is already an active Emergency Call.
+message StartEmergencyCall {
+  required bool start_emergency_call = 1;
+}
+
+// End an Emergency Call.
+// Ends the current Emergency Call is one is initializing or in-progress.
+message EndEmergencyCall {
+  required bool end_emergency_call = 1;
+}
+
+// The state of the ECall system.
+message EmergencyCallState {
+  required ECallMode mode = 1;
+}

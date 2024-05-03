@@ -1,0 +1,21 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+
+message AndroidProcessInfo {
+  required int32 pid = 1;                                  // pid of this process
+  required string cmdline = 2 [(nanopb).max_length = 40];  // name of the process
+  required int64 system_memory_kb = 3;                     // total system memory
+  required double memory_usage = 4;                        // memory usage by process, in percentage
+  required double cpu_usage = 5;                           // cpu usage by process, in percentage
+}
+
+message AndroidProcessInfoRequest {
+  required bool is_active = 1;
+}
+
+message AndroidProcessInfoResponse {
+  repeated AndroidProcessInfo process_info = 1 [(nanopb).max_count = 50];
+}

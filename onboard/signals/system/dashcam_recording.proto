@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+
+message DashcamRecordCommand {
+  required bool start_recording = 1;
+};
+
+message DashcamRecordingState {
+  required bool is_recording = 1;
+};
+
+message DeleteDashcamRecordingCommand {
+  required string recording_name = 1 [(nanopb).max_length = 31];
+};

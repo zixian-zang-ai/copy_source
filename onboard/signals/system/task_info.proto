@@ -1,0 +1,37 @@
+syntax = "proto2";
+
+package moz.msg;
+option java_package = "co.applied.protos";
+option java_outer_classname = "TaskInfoProtos";
+
+import "nanopb.proto";
+
+enum TargetType {
+  TARGET_TYPE_UNSET = 0;
+  TARGET_TYPE_CONFIG = 1;
+  TARGET_TYPE_APP = 2;
+  TARGET_TYPE_ECU = 3;
+  TARGET_TYPE_OS = 4;
+  TARGET_TYPE_APK = 5;
+}
+
+enum UpdateType {
+  UPDATE_TYPE_REPLACE = 0;
+  UPDATE_TYPE_ADD = 1;
+  UPDATE_TYPE_REMOVE = 2;
+}
+
+message TaskInfo {
+  // length of UUID is 36
+  required string campaign_uuid = 1 [(nanopb).max_length = 37];
+  required string component_uuid = 2 [(nanopb).max_length = 37];
+  required string target_name = 4 [(nanopb).max_length = 40];
+  required string target_version = 5 [(nanopb).max_length = 60];
+  // length of sha256 is 64
+  required string target_content_sha = 6 [(nanopb).max_length = 65];
+  required TargetType target_type = 7;
+  required UpdateType update_type = 8;
+  required string target_identifier = 9 [(nanopb).max_length = 100];
+
+  reserved 3;
+};

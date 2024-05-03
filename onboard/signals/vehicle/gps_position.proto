@@ -1,0 +1,14 @@
+
+syntax = "proto2";
+
+package moz.msg;
+
+message GPSPosition {
+  required double gps_lat = 1;   // signed latitude
+  required double gps_long = 2;  // signed longitude
+  reserved 3;
+  reserved 4;
+  required uint32 gps_fix = 5;
+  required double gps_yaw = 6 [default = 0.0];  // signed yaw
+  required double gps_alt = 7 [default = 0.0];  // signed altitude
+}

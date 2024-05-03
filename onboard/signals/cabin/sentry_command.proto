@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+package moz.msg;
+
+message SentryCommand {
+  required bool action_enable = 1;
+};
+
+message SentryCommandAck {
+  required bool is_enabled = 1;
+};

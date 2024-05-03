@@ -1,0 +1,9 @@
+syntax = "proto2";
+
+package moz.msg;
+
+// request android cluster to change its state
+message AndroidClusterStateChangeRequest {
+  // whether android cluster is disabled
+  required bool disable = 1;
+};

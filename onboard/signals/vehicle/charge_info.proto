@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "onboard/signals/common_types/si_units.proto";
+
+message ChargeInfo {
+  required float charge_percentage = 2;
+  required Watt charging_rate = 3;
+};
+
+message ChargingStatus {
+  required bool is_charging = 1;
+}

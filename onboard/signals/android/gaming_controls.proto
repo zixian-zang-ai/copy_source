@@ -1,0 +1,10 @@
+syntax = "proto2";
+
+package moz.msg;
+
+message GamingControls {
+  required bool game_accelerate_intent = 1;
+  required bool game_brake_intent = 2;
+  required bool game_left_intent = 3;
+  required bool game_right_intent = 4;
+};

@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+
+import "onboard/signals/hive/intent.proto";
+
+// Response to a TextToIntentRequest
+message TextToIntentResponse {
+  // Should match uuid from the request.
+  required string request_uuid = 1 [(nanopb).max_length = 37];
+  required hive.hmi.Intent intent = 2;
+}

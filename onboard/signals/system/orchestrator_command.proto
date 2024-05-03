@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+
+enum CommandType {
+  COMMAND_TYPE_KILL = 0;
+  COMMAND_TYPE_KILL_AND_START = 1;
+}
+
+message OrchestratorCommand {
+  required CommandType command = 1;
+  repeated string commanded_services = 2 [(nanopb).max_count = 40, (nanopb).max_length = 80];
+};

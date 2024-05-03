@@ -1,0 +1,8 @@
+syntax = "proto2";
+
+package moz.msg;
+
+message GetValetModeStateRequest {
+  // TODO: Add common fields to all messages so no signal is ever truly empty.
+  required bool unused = 1;
+}

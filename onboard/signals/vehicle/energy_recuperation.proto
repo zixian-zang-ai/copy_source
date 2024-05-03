@@ -1,0 +1,25 @@
+syntax = "proto2";
+
+package moz.msg;
+option java_package = "co.applied.protos";
+option java_outer_classname = "EnergyRecuperationProtos";
+
+enum RecuperationIntensity {
+  RECUPERATION_INTENSITY_OFF = 0;
+  RECUPERATION_INTENSITY_LEVEL_1 = 1;
+  RECUPERATION_INTENSITY_LEVEL_2 = 2;
+  RECUPERATION_INTENSITY_LEVEL_3 = 3;
+  RECUPERATION_INTENSITY_LEVEL_4 = 4;
+  RECUPERATION_INTENSITY_LEVEL_5 = 5;
+}
+
+// request to set the current recuperation intensity
+message SetRecuperationRequest {
+  // the intensity level to set
+  required RecuperationIntensity intensity_level = 1;
+};
+
+message RecuperationIntensityState {
+  // the currentintensity level to set
+  required RecuperationIntensity intensity_level = 1;
+};

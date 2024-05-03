@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+package moz.msg;
+option java_package = "co.applied.protos";
+option java_outer_classname = "UnrealEngineClusterModeRequestProtos";
+
+enum UnrealEngineClusterMode {
+  UNREAL_ENGINE_CLUSTER_MODE_UNSET = 0;
+  UNREAL_ENGINE_CLUSTER_MODE_LIGHT = 1;
+  UNREAL_ENGINE_CLUSTER_MODE_DARK = 2;
+}
+
+message UnrealEngineClusterModeRequest {
+  required UnrealEngineClusterMode mode = 1;
+}

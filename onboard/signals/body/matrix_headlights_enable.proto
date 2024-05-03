@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+package moz.msg;
+
+/// Possible commands for door locks.
+enum MatrixHeadlightsEnabledState {
+  MATRIX_HEADLIGHTS_ENABLED_STATE_UNSET = 0;
+  MATRIX_HEADLIGHTS_ENABLED_STATE_OFF = 1;
+  MATRIX_HEADLIGHTS_ENABLED_STATE_ON = 2;
+}
+
+message MatrixHeadlightsEnable {
+  required MatrixHeadlightsEnabledState matrix_headlights_enabled_state = 1;
+};

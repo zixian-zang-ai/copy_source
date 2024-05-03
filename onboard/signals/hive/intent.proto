@@ -1,0 +1,194 @@
+syntax = "proto3";
+
+package hive.hmi;
+option java_package = "co.applied.hive.hmi.intent";
+
+import "nanopb.proto";
+
+message Intent {
+  message GetInfo {
+    oneof info {
+      int32 range = 1;
+      int32 charge_percent = 2;
+    }
+  }
+
+  message AppNavigation {
+    enum App {
+      UNSET_APP = 0;
+      SETTINGS = 1;
+      MAPS = 2;
+      YOUTUBE = 3;
+      SPOTIFY = 4;
+      PRIME_VIDEO = 5;
+    }
+    // TODO(canyon): Support different actions
+    enum Action {
+      UNSET_ACTION = 0;
+      OPEN = 1;
+    }
+    App app = 1;
+    Action action = 2;
+  }
+
+  message DriveMode {
+    enum Mode {
+      UNSET = 0;
+      NORMAL = 1;
+      SPORT = 2;
+      RACETRACK = 3;
+      ECO = 4;
+    }
+    Mode mode = 1;
+  }
+
+  message Temperature {
+    // TODO(canyon): Support different vents
+    int32 temperature_degrees = 1;
+  }
+
+  message SeatHeater {
+    // TODO(canyon): Support different seats and heat levels
+    enum State {
+      UNSET = 0;
+      OFF = 1;
+      ON = 2;
+    }
+    State state = 1;
+  }
+
+  message OpenCloseDoor {
+    enum Action {
+      UNSET = 0;
+      OPEN = 1;
+      CLOSE = 2;
+    }
+    enum Door {
+      UNSET_DOOR = 0;
+      TRUNK = 1;
+      GARAGE = 2;
+    }
+    Action action = 1;
+    Door door = 2;
+  }
+
+  message HvacFan {
+    enum FanLevel {
+      UNSET = 0;
+      OFF = 1;
+      LOW = 2;
+      MEDIUM = 3;
+      HIGH = 4;
+    }
+    FanLevel fan_level = 1;
+  }
+
+  message MediaPlaybackControl {
+    enum Action {
+      UNSET = 0;
+      PLAY = 1;
+      PAUSE = 2;
+      SKIP_FORWARD = 3;
+      SKIP_BACKWARD = 4;
+    }
+    Action action = 1;
+  }
+
+  message PlayMusic {
+    string mood = 1 [(nanopb).max_length = 128];  // The user's current mood.
+  }
+
+  message MapNavigation {
+    enum LocationType {
+      UNSET_TYPE = 0;
+      POI = 1;
+      CATEGORY = 2;
+      ADDRESS = 3;
+      PERSONAL = 4;
+    }
+    enum Action {
+      UNSET_ACTION = 0;
+      NAVIGATE = 1;
+      ADD_STOP = 2;
+      SHOW_ON_MAP = 3;
+      STOP_NAVIGATION = 4;
+    }
+    string location = 1 [(nanopb).max_length = 128];
+    LocationType location_type = 2;
+    Action action = 3;
+  }
+
+  message WebSearch {
+    string query = 1 [(nanopb).max_length = 128];
+  }
+
+  message MatrixHeadlights {
+    enum State {
+      UNSET = 0;
+      OFF = 1;
+      ON = 2;
+    }
+    State state = 1;
+  }
+
+  message QueryDocument {
+    enum QueryType {
+      UNSET = 0;
+      SUMMARY = 1;
+    }
+    QueryType query_type = 1;
+  }
+
+  message StartStopEntertainment {
+    enum Action {
+      UNSET_ACTION = 0;
+      START = 1;
+      STOP = 2;
+    }
+    enum Display {
+      UNSET_DISPLAY = 0;
+      FRONT_RIGHT = 1;
+      REAR_LEFT = 2;
+      REAR_RIGHT = 3;
+    }
+    enum Type {
+      UNSET_TYPE = 0;
+      VIDEO = 1;
+      GAME = 2;
+    }
+    Action action = 1;
+    Display display = 2;
+    Type type = 3;
+  }
+
+  message LaneChange {
+    enum Direction {
+      UNSET = 0;
+      LEFT = 1;
+      RIGHT = 2;
+      UNSPECIFIED = 3;
+    }
+    Direction direction = 1;
+  }
+
+  // Next ID: 18 (xinda)
+  oneof user_intent {
+    GetInfo get_info = 2;
+    AppNavigation app_navigation = 3;
+    DriveMode set_drive_mode = 4;
+    Temperature set_temperature = 5;
+    SeatHeater set_seat_heater = 6;
+    OpenCloseDoor open_close_door = 8;
+    HvacFan set_hvac_fan = 9;
+    MediaPlaybackControl media_playback_control = 10;
+    PlayMusic play_music = 14;
+    MapNavigation map_navigation = 11;
+    WebSearch web_search = 12;
+    MatrixHeadlights set_matrix_headlights = 13;
+    QueryDocument query_document = 15;
+    StartStopEntertainment start_stop_entertainment = 16;
+    LaneChange lane_change = 17;
+  }
+
+  reserved 1, 7;
+}

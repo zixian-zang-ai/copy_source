@@ -1,0 +1,10 @@
+syntax = "proto2";
+
+package moz.msg;
+
+message SteeringTestMode {
+  // test modes for steering system components
+  required uint32 polaris_test_mode = 1;
+  required uint32 front_rack_test_mode = 2;
+  required uint32 rear_rack_test_mode = 3;
+}

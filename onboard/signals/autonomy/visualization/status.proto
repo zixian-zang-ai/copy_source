@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+package moz.msg;
+
+enum StatusType {
+  STATUS_TYPE_NOT_AVAILABLE = 0;
+  STATUS_TYPE_OK = 1;
+  STATUS_TYPE_ERROR = 2;
+}
+
+// Status Enums
+message Status {
+  required StatusType status = 1;
+}

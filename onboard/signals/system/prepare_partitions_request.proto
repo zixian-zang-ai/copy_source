@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+
+message PreparePartitionsRequest {
+  required string board_name = 1 [(nanopb).max_length = 40];
+  // An unique identifier based on the createion timestamp of ota_preparer, preventing ota_worker
+  // from copying partitiosn repeatedly.
+  required uint64 execution_id = 2;
+};

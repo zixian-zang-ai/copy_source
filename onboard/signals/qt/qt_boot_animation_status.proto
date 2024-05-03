@@ -1,0 +1,22 @@
+syntax = "proto2";
+
+package moz.msg;
+option java_package = "co.applied.protos";
+option java_outer_classname = "QtBootAnimationStatusProtos";
+
+enum QtBootAnimationState {
+  QT_BOOT_ANIMATION_STATE_DEFAULT = 0;
+  QT_BOOT_ANIMATION_STATE_STOPPED = 1;
+  QT_BOOT_ANIMATION_STATE_STARTED = 2;
+};
+
+enum AndroidMapBootAnimationStyle {
+  ANDROID_MAP_BOOT_ANIMATION_STYLE_NONE = 0;
+  ANDROID_MAP_BOOT_ANIMATION_STYLE_BOTTOM_TOP = 1;
+  ANDROID_MAP_BOOT_ANIMATION_STYLE_LEFT_RIGHT = 2;
+};
+
+message QtBootAnimationStatus {
+  required QtBootAnimationState state = 1;
+  required AndroidMapBootAnimationStyle style = 2;
+};

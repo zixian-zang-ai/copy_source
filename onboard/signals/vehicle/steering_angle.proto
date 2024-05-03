@@ -1,0 +1,8 @@
+syntax = "proto2";
+
+package moz.msg;
+
+message SteeringAngle {
+  required float road_wheel_angle = 1;
+  required float steering_wheel_angle = 2;
+};

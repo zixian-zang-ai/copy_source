@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+package moz.msg;
+option java_package = "co.applied.protos";
+option java_outer_classname = "ExecuteTaskProtos";
+
+import "nanopb.proto";
+import "onboard/signals/system/task_info.proto";
+
+message ExecuteTask {
+  required TaskInfo task_info = 1;
+  required string destination_board_name = 2 [(nanopb).max_length = 60];
+  required uint32 max_num_retries = 3;
+  // For android ota we pass the s3 url through component path, hence the large max length
+  required string component_path = 4 [(nanopb).max_length = 2000];
+  required bool same_board_as_manager = 5;
+};

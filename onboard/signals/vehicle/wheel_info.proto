@@ -1,0 +1,19 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "onboard/signals/common_types/si_units.proto";
+
+message WheelInfo {
+  /// Vehicle wheel ticks
+  required int32 wheel_ticks_front_right = 1 [default = 0];
+  required int32 wheel_ticks_front_left = 2 [default = 0];
+  required int32 wheel_ticks_back_right = 3 [default = 0];
+  required int32 wheel_ticks_back_left = 4 [default = 0];
+
+  // Wheel speeds in RPM
+  required RevolutionsPerMinute wheel_speed_front_left = 5;
+  required RevolutionsPerMinute wheel_speed_front_right = 6;
+  required RevolutionsPerMinute wheel_speed_back_left = 7;
+  required RevolutionsPerMinute wheel_speed_back_right = 8;
+};

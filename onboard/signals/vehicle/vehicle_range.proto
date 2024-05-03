@@ -1,0 +1,9 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "onboard/signals/common_types/si_units.proto";
+
+message VehicleRange {
+  required Meter range = 1;
+};

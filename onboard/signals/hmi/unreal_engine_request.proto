@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+package moz.msg;
+
+enum UnrealEngineRequestType {
+  UNREAL_ENGINE_REQUEST_TYPE_DISABLE = 0;
+  UNREAL_ENGINE_REQUEST_TYPE_ENABLE = 1;
+  UNREAL_ENGINE_REQUEST_TYPE_STATUS = 2;
+}
+
+message UnrealEngineRequest {
+  required UnrealEngineRequestType request_type = 1;
+}

@@ -1,0 +1,32 @@
+syntax = "proto2";
+
+package moz.msg;
+
+enum BlinkerStalkPosition {
+  BLINKER_STALK_POSITION_NEUTRAL = 0;  /// neutral position - no indicator intent
+  BLINKER_STALK_POSITION_LEFT_INTERIM =
+      1;  /// indicate user intent to signal left for a short duration
+  BLINKER_STALK_POSITION_LEFT =
+      2;  /// indicate user intent to signal left until explicitly cancelled
+  BLINKER_STALK_POSITION_RIGHT_INTERIM =
+      3;  /// indicate user intent to signal right for a short duration
+  BLINKER_STALK_POSITION_RIGHT =
+      4;  /// indicate user intent to signal right until explicitly cancelled
+}
+
+/// Message that captures the driver input to signal a turn/activate the blinkers
+message BlinkerStalk {
+  required BlinkerStalkPosition blinker_stalk_position = 1;
+};
+
+enum TurnSignalState {
+  TURN_SIGNAL_STATE_INACTIVE = 0;         /// driver does not intend to turn
+  TURN_SIGNAL_STATE_SIGNALLING_LEFT = 1;  /// driver intends to turn left and is signalling as such
+  TURN_SIGNAL_STATE_SIGNALLING_RIGHT =
+      2;  /// driver intends to turn right and is signalling as such
+}
+
+/// Message captures the eventual driver intent for turning the vehicle
+message TurnIndicator {
+  required TurnSignalState turn_signal_state = 1;
+}

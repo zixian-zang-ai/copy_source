@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+package moz.msg;
+
+enum UnrealEngineStatusType {
+  UNREAL_ENGINE_STATUS_TYPE_NOT_RUNNING = 0;
+  UNREAL_ENGINE_STATUS_TYPE_RUNNING = 1;
+  UNREAL_ENGINE_STATUS_TYPE_TIMED_OUT = 2;
+  UNREAL_ENGINE_STATUS_TYPE_SUSPENDED = 3;
+}
+
+message UnrealEngineStatusResponse {
+  required UnrealEngineStatusType unreal_status = 1;
+}

@@ -1,0 +1,10 @@
+syntax = "proto2";
+
+package moz.msg;
+
+// This message defines the Lane information message.
+message LaneInfo {
+  required uint32 current_number_of_lanes =
+      1;                                 // Number of lanes on the current road occupied by ego.
+  required uint32 current_lane_idx = 2;  // 0-based index from left to right.
+}

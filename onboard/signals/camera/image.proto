@@ -1,0 +1,35 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "nanopb.proto";
+
+import "onboard/signals/camera/camera_format.proto";
+import "onboard/signals/camera/camera_timestamp.proto";
+
+message CompressedImage {
+  // Header timestamp should be acquisition time of image
+  // Header frame_id should be optical frame of camera
+  // origin of frame should be optical center
+  // of camera +x should point to the right in the image +y should point down in the image +z should
+  // point into to plane of the image
+  required Header header = 1;
+
+  // Specifies the format of the compressed data
+  required Format format = 2;
+
+  // Compressed image buffer
+  // Max size is equal to the shared memory buffer size used by the stream-controller
+  required bytes data = 3 [(nanopb).max_size = 200000];
+}
+
+message Header {
+  // sequence ID: consecutively increasing ID
+  required uint32 sequence = 1;
+
+  // Timestamps
+  repeated CameraTimestamp timestamps = 2 [(nanopb).max_count = 10];
+
+  // Frame this data is associated with
+  required string frame_id = 3 [(nanopb).max_length = 50];
+}

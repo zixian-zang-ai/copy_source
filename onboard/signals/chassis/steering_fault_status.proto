@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+package moz.msg;
+
+enum SteeringFaultStatusWarning {
+  STEERING_FAULT_STATUS_WARNING_NO_ERROR = 0;
+  STEERING_FAULT_STATUS_WARNING_YELLOW_LIGHT_ON = 1;
+  STEERING_FAULT_STATUS_WARNING_RED_LIGHT_ON = 2;
+}
+
+message SteeringFaultStatus {
+  required SteeringFaultStatusWarning warning = 1;
+}

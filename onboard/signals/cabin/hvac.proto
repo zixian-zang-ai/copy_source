@@ -1,0 +1,39 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "onboard/signals/common_types/si_units.proto";
+
+message HvacTemperatureInfo {
+  required DegreesCelsius front_left = 1;
+  required DegreesCelsius front_right = 2;
+  required DegreesCelsius back_left = 3;
+  required DegreesCelsius back_right = 4;
+};
+
+message HvacFanStatus {
+  required bool fan_status = 1;
+};
+
+message HvacAirCirculationButtonState {
+  required bool air_circulation_button_pressed = 1;
+}
+
+enum HvacSeatSettings {
+  HVAC_SEAT_SETTINGS_OFF = 0;
+  HVAC_SEAT_SETTINGS_LEVEL_1 = 1;
+  HVAC_SEAT_SETTINGS_LEVEL_2 = 2;
+  HVAC_SEAT_SETTINGS_LEVEL_3 = 3;
+}
+
+message HvacSeatSetting {
+  required HvacSeatSettings front_left_seat_heating = 1;
+  required HvacSeatSettings front_right_seat_heating = 2;
+  required HvacSeatSettings front_left_seat_ventilation = 3;
+  required HvacSeatSettings front_right_seat_ventilation = 4;
+}
+
+message HvacAppInfo {
+  required int32 passenger_fan = 1;
+  required HvacTemperatureInfo temperature_info = 2;
+}

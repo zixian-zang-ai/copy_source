@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "onboard/signals/common_types/si_units.proto";
+
+message ElectricMotorTorque {
+  // current electric motor torque
+  required NewtonMeter motor_torque_estimated = 1;
+  // current upper limit of motor torque
+  required NewtonMeter motor_torque_upper_limit = 2;
+  // current lower limit of motor torque
+  required NewtonMeter motor_torque_lower_limit = 3;
+}

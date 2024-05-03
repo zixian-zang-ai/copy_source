@@ -1,0 +1,24 @@
+syntax = "proto2";
+
+package moz.msg;
+
+import "onboard/signals/adas/image_and_detections.proto";
+
+enum HeadlightCommand {
+  HEADLIGHT_COMMAND_UNKNOWN = 0;
+  HEADLIGHT_COMMAND_OFF = 1;
+  HEADLIGHT_COMMAND_ILLUMINATE_OBJECT = 2;
+}
+
+message MatrixHeadlightCommand {
+  required HeadlightCommand command = 1;
+  // In the case of kIlluminateObject, bounding box to illuminate
+  optional BoundingBox2D bbox = 2;
+};
+
+message DetectedObject {
+  required double center_x = 1;
+  required double center_y = 2;
+  required double size_x = 3;
+  required double size_y = 4;
+};
