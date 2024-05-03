@@ -19,3 +19,5 @@ message AdaptiveCruiseControlHmiStatus {
       [default = ACC_HMI_STATUS_ENUM_ACC_HMI_STATUS_OFF];
   required KilometerPerHour operating_speed = 2;
 }
+
+bbbb 
